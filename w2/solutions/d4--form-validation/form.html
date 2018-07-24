@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="https://cdn.shoelace.style/1.0.0-beta24/shoelace.css">
+  </head>
+  <body>
+    <div class="container" style="max-width: 500px">
+      <h1>Pre-paid Parking Form</h1>
+      <form id="parking-form">
+        <div class="input-field" id="name-field">
+          <label for="name">Name</label>
+          <input id="name" type="text">
+        </div>
+        <div class="input-field" id="car-field">
+          <label for="car-year">Car</label>
+          <div class="input-group">
+            <input id="car-year" type="text" placeholder="Year">
+            <input id="car-make" type="text" placeholder="Make">
+            <input id="car-model" type="text" placeholder="Model">
+          </div>
+        </div>
+        <div class="input-field" id="start-date-field">
+          <label for="start-date">Date parking</label>
+          <input id="start-date" type="date">
+        </div>
+        <div class="input-field" id="days-field">
+          <label for="days">Number of days</label>
+          <input id="days" type="text">
+        </div>
+        <div class="input-field" id="credit-card-field">
+          <label for="credit-card">Credit Card</label>
+          <input id="credit-card" type="text">
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-field" id="cvv-field">
+              <label for="cvv">CVV</label>
+              <input id="cvv" type="text">
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-field" id="expiration-field">
+              <label for="expiration">Expiration</label>
+              <input id="expiration" type="text" placeholder="MM/YY">
+            </div>
+          </div>
+        </div>
+        <div class="input-field">
+          <button id="submit-button" type="submit">Make reservation</button>
+        </div>
+      </form>
+      <div id="total"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
