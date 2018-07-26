@@ -13,7 +13,6 @@ Here are the links shared day by day in the kb, indexed by topic.
   * [Ruby Rogues](https://devchat.tv/ruby-rogues)
   * [Developer Tea](https://developertea.simplecast.fm/)
 
-
 ## HTML
 
 * [HTML on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML)

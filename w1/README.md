@@ -6,11 +6,10 @@
 
 ### Links
 
-* [Homework: Build a Small Business Website](https://glitch.com/edit/#!/momentum-w1d1)
+* [Assignment: Build a Small Business Website](https://glitch.com/edit/#!/momentum-w1d1)
 * [MDN](https://developer.mozilla.org/en-US/)
   * [HTML on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [A Brief History of Markup (PDF)](a_brief_history_of_markup.pdf)
-
 
 ## Day 2
 
@@ -20,8 +19,8 @@
 
 ### Links
 
+* [Assignment: Build a Dog Adoption Site](https://glitch.com/edit/#!/momentum-w1d2)
 * [Instructor notes from class](notes/css.slides.md)
-* [Homework: Build a Dog Adoption Site](https://glitch.com/edit/#!/momentum-w1d2)
 * [CSS on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [CSS Diner](https://flukeout.github.io/)
 * [background on CSS Tricks](https://css-tricks.com/almanac/properties/b/background/)
@@ -45,6 +44,7 @@
 * Git commands
 
 ### Links
+
 * [Really Friendly Command Line Intro by Tracy Osborn](https://hellowebbooks.com/learn-command-line/)
 * [The $PATH to Enlightenment](http://alistapart.com/article/the-path-to-enlightenment)
 * Git
