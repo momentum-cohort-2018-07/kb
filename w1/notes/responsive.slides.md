@@ -1,6 +1,6 @@
 autoscale: true
 
-# [fit] Responsive design
+# [fit] **Responsive design**
 
 ---
 

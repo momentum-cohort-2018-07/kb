@@ -1,4 +1,4 @@
-# Intro to HTML
+# Intro to **HTML**
 
 ## The structure of web pages
 
