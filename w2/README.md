@@ -13,6 +13,7 @@
 * [JavaScript on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Simplified JavaScript Jargon](http://jargon.js.org/)
 * [Eloquent JavaScript](https://eloquentjavascript.net/)
+* [You Don't Know JS Book Series by Kyle Simpson](https://github.com/getify/You-Dont-Know-JS) - Freely available to read on GitHub. The first book, [Up & Going](https://github.com/getify/You-Dont-Know-JS/blob/master/up%20%26%20going/README.md), is a good place to start. The rest of the series is fairly advanced, but it's a great resource to bookmark for later on.
 
 ## Day 2
 
