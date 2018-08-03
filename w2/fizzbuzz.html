@@ -10,25 +10,25 @@
   <h1>FizzBuzz</h1>
 </body>
 <script>
-  function fizzBuzz() {
-    let i = 1;
-    while (i <= 100) {
-      document.write("<div>")
-      if (i % 3 === 0) {
-        document.write("Fizz")
-      }
-      if (i % 5 === 0) {
-        document.write("Buzz")
-      }
-      if (i % 3 !== 0 && i % 5 !== 0) {
-        document.write(i)
-      }
-      document.write("</div>")
-
-      i++
+  function fizzBuzz(start, end) {
+    if (start >= end) {
+      return
     }
+
+    document.write("<div>")
+    if (start % 3 === 0) {
+      document.write("Fizz")
+    }
+    if (start % 5 === 0) {
+      document.write("Buzz")
+    }
+    if (start % 3 !== 0 && start % 5 !== 0) {
+      document.write(start)
+    }
+    document.write("</div>")
+    fizzBuzz(start + 1, end);
   }
 
-  fizzBuzz()
+  fizzBuzz(1, 100)
 </script>
 </html>
