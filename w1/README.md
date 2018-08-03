@@ -87,6 +87,7 @@
 * Flexbox
   * [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
   * [MDN - Basic concepts of flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox)
+  * [Flexbox Presentation](notes/FlexboxPresentation.pdf)
 * Grid
   * [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
   * [Is it really safe to start using CSS Grid layout?](https://rachelandrew.co.uk/archives/2017/07/04/is-it-really-safe-to-start-using-css-grid-layout/) -- good article about browser support in general
