@@ -45,6 +45,7 @@
 
 ### Links
 
+* [Slides from class](https://momentumlearn.github.io/intro-git-and-cli/)
 * [Really Friendly Command Line Intro by Tracy Osborn](https://hellowebbooks.com/learn-command-line/)
 * [The $PATH to Enlightenment](http://alistapart.com/article/the-path-to-enlightenment)
 * Git
