@@ -3,15 +3,16 @@ function fizzBuzz (start, end) {
     return
   }
 
-  if (start % 3 === 0) {
+  if (start % 15 === 0) {
+    console.log('FizzBuzz')
+  } else if (start % 3 === 0) {
     console.log('Fizz')
-  }
-  if (start % 5 === 0) {
+  } else if (start % 5 === 0) {
     console.log('Buzz')
-  }
-  if (start % 3 !== 0 && start % 5 !== 0) {
+  } else {
     console.log(start)
   }
+
   fizzBuzz(start + 1, end)
 }
 
