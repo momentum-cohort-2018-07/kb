@@ -42,6 +42,7 @@
 * [DOM Enlightenment by Cody Lindley](http://www.domenlightenment.com/)
 * [Chapters 13-15 of Eloquent Javascript](https://eloquentjavascript.net/)
 * [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+* [MDN Event Reference](https://developer.mozilla.org/en-US/docs/Web/Events)
 * [The Basics of DOM Manipulation in Vanilla JavaScript](https://www.sitepoint.com/dom-manipulation-vanilla-javascript-no-jquery/)
 
 ## Day 4
