@@ -55,5 +55,7 @@
 ### Links
 
 * [Notes from class](notes/w2d4.md)
-* [Sample app from class](https://glitch.com/edit/#!/great-vinyl)
+* [MDN's big list of Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)
+* [HTMLFormElement on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement) -- look here for properties and methods you can use with a `<form>` element
+* [Sample app from class] (https://glitch.com/edit/#!/great-vinyl)
 * [So You Want to be a Wizard](https://jvns.ca/wizard-zine.pdf)
