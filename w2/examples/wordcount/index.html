@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>WordCount</title>
+  <link rel="stylesheet" href="mini-default.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>Word count</h1>
-  <p>Paste a text sample below to get the word count.</p>
-  <div>
-  <textarea id="text-sample" rows=20 cols=80></textarea>
+  <div class="container">
+    <h1>Word count</h1>
+    <p>Paste a text sample below to get the word count.</p>
+    <div>
+    <textarea id="text-sample" rows=20 cols=80></textarea>
+    </div>
+    <button id="run-word-count">Run word count</button>
+    <div class="card" id="output"></div>
   </div>
-  <button id="run-word-count">Run word count</button>
-  <div id="output"></div>
 </body>
 </html>

@@ -50,6 +50,7 @@ document.getElementById('run-word-count').addEventListener('click', function () 
   var counter = wordCount(text)
   var words = Object.keys(counter)
   var output = document.getElementById('output')
+  output.innerHTML = ''
   for (var idx = 0; idx < words.length; idx++) {
     var word = words[idx]
     output.innerHTML += '<div>' + word + ': ' + counter[word] + '</div>'
