@@ -65,7 +65,7 @@ function setupDecimalButton () {
   document.getElementById('decimal').addEventListener('click', function (event) {
     if (!error) {
       var output = getOutput()
-      
+
       var isOperator = function (str) {
         return (str === '+' || str === '-' || str === '*' || str === '/')
       }
