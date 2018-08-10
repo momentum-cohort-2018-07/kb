@@ -14,11 +14,11 @@ function calculateCurrentOutput () {
 }
 
 function setupNumberButtons () {
-  document.querySelectorAll('.number').forEach(function (element) {
+  for (var element of document.querySelectorAll('.number')) {
     element.addEventListener('click', function (event) {
       addToOutput(event.target.innerText)
     })
-  })
+  }
 }
 
 function setupOperatorButtons () {
