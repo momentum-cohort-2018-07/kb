@@ -74,10 +74,21 @@ end
 
 5.times { puts "Hello" }
 
+# I can write this on a single line
 1.upto(10) { |x| puts x }
 
+# Or, the same thing on multiple lines
 1.upto(10) do |x|
   puts x
+end
+
+array = [2, 4, 6, 8, 10]
+array.map { |num| num * num }
+# this returns a new array: [4, 16, 36, 64, 100]
+
+# same method on multiple lines:
+array.map do |num|
+  num * num
 end
 
 
