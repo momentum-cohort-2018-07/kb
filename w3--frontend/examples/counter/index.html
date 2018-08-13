@@ -11,7 +11,15 @@
   <h1>Counter</h1>
 
   <p>
-    <button id="click-me">Click me</button>
+    <button id="click-me">Click me</button>    
+  </p>
+
+  <p>
+    <button id="click-me-too">Click me too</button>
+  </p>
+
+  <p>
+    <button id="click-me-three">Click me three</button>
   </p>
 
   <script>
@@ -24,9 +32,37 @@
     }
 
     let counter = makeCounter()
+    let counter2 = makeCounter()
+    let counter3 = makeCounter()
 
-    document.getElementById('click-me').addEventListener('click', function (event) {
-      event.target.innerText = "You have clicked this button " + counter() + " times."
+    // let count = 0
+    // let count2 = 0
+
+    // function counter() {
+    //   count++
+    //   return count
+    // }
+
+    // function counter2() {
+    //   count2++
+    //   return count2
+    // }
+
+    let handleClick = function (event) {
+      event.target.innerText = "You have clicked this button " + 
+        counter() + " times."
+    }
+
+    document.getElementById('click-me').addEventListener('click', handleClick)
+
+     document.getElementById('click-me-too').addEventListener('click', function (event) {
+      event.target.innerText = "You have clicked this button " + 
+      counter2() + " times."
+    })
+
+    document.getElementById('click-me-three').addEventListener('click', function (event) {
+      event.target.innerText = "You have clicked this button " + 
+      counter3() + " times."
     })
   </script>
 </body>
