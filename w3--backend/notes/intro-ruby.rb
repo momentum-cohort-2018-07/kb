@@ -111,7 +111,7 @@ puts $count # note its value here
 puts "Method is called"
 counter_with_global_var # run the method, which changes the global variable's value
 
-puts "and here is the gloabl variable $count after method runs:"
+puts "and here is the global variable $count after method runs:"
 puts $count # note its value here
 
 # here we use only local variables
