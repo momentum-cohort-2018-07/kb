@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://rawgit.com/cndreisbach/sixtyseven-css/master/sixtyseven.css">
+</head>
+<body>
+  <h1>Counter</h1>
+
+  <p>
+    <button id="click-me">Click me</button>
+  </p>
+
+  <script>
+    function makeCounter () {
+      let count = 0;
+      return function () {
+        count += 1
+        return count
+      }
+    }
+
+    let counter = makeCounter()
+
+    document.getElementById('click-me').addEventListener('click', function (event) {
+      event.target.innerText = "You have clicked this button " + counter() + " times."
+    })
+  </script>
+</body>
+</html>
