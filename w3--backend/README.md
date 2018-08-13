@@ -13,7 +13,7 @@
 
 ### Links
 
-- [Slides from class](https://momentumlearn.github.io/ruby-day1-slides/)
+- [Slides from class](https://momentumlearn.github.io/ruby-day1-slides/index.html#/)
 - [Ruby Programming Language](https://www.ruby-lang.org/en/)
 - [Ruby Docs](http://ruby-doc.org/core-2.5.0/)
 - [GitHub Ruby Style Guide](https://github.com/github/rubocop-github/blob/master/STYLEGUIDE.md)
