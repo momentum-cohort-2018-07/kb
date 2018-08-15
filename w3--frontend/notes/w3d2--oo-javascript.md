@@ -52,8 +52,9 @@ phoenix.getFirstName() // => Phoenix
 ---
 
 ```js
-var getFirstName = function () {
-  return this.name.split(" ")[0]
+let getFirstName = function () {
+  let names = this.name.split(" ")
+  return names[0]
 }
 
 var phoenix = {
@@ -147,8 +148,10 @@ class Employee {
 
 var phoenix = new Employee("Phoenix Carter",
                            new Date(2017, 8, 1))
+var alex = new Employee("Alex Corey", new Date(2018, 3, 2))
 
 phoenix.getFirstName()         // => Phoenix
+alex.getFirstName()            // => Alex
 Object.getPrototypeOf(phoenix) // => Employee {}
 ```
 

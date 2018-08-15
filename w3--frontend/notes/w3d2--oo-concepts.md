@@ -38,19 +38,19 @@ function setDelete(set, item) {
 ```js
 var mySet = []
 
-setAdd(mySet, "Clinton")
-setAdd(mySet, "Amy")
-setAdd(mySet, "Clinton")
+setAdd(mySet, "Casey")
+setAdd(mySet, "River")
+setAdd(mySet, "Casey")
 
-mySet                      // => [ 'Clinton', 'Amy' ]
+mySet                      // => [ 'Casey', 'River' ]
 
-setHas(mySet, "Clinton")   // => true
-setHas(mySet, "Jessica")   // => false
+setHas(mySet, "Casey")   // => true
+setHas(mySet, "Drew")   // => false
 
-setDelete(mySet, "Clinton")
-setHas(mySet, "Clinton")   // => false
+setDelete(mySet, "Casey")
+setHas(mySet, "Casey")   // => false
 
-mySet                      // => [ 'Amy' ]
+mySet                      // => [ 'River' ]
 ```
 
 ---
@@ -61,7 +61,7 @@ mySet                      // => [ 'Amy' ]
 var students = new Set()
 
 students.add("Hunter") // a method
-students.add("Alyssa")
+students.add("Gale")
 
 students.size // 2 - a property, data about the set
 
