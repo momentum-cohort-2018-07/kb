@@ -1,5 +1,5 @@
 class Phone
-  # accessor methods -- add these after demoing the getter and setter meothods
+  # accessor methods
   ## this is an example of metaprogramming -- it creates the other methods for you
   # metaprogramming (methods that define other methods) is very common in Ruby
   # this method shorthand is also called a "macro"
