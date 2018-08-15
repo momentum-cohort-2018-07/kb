@@ -33,8 +33,10 @@
 ### Links
 
 - [Ruby standard library](http://ruby-doc.org/stdlib-2.5.0/)
+- [Ruby Equality and Object Comparison](https://www.skorks.com/2009/09/ruby-equality-and-object-comparison/)
 - [Writing Your Own Class in Ruby](http://rubylearning.com/satishtalim/writing_our_own_class_in_ruby.html)
 - [Ruby on GitHub](https://github.com/topics/ruby)
+- [code demo from class](notes/oop-phones)
 
 ## Day 3
 
