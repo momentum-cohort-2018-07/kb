@@ -35,3 +35,14 @@
 * Understanding `this`
   * [JavaScript `this` keyword explained simply](https://medium.com/@NinjaJavaScript/javascript-this-keyword-explained-simply-e90762d4945d)
   * [Understanding JavaScript: This Keyword](https://hackernoon.com/understanding-javascript-the-this-keyword-4de325d77f68)
+
+## Day 4
+
+* Using multiple classes together
+* Creating a game
+
+### Link
+
+* [Video: Mary Rose Cook livecodes Space Invaders](https://vimeo.com/105955605)
+* [Annotated code: Space Invaders](http://annotated-code.maryrosecook.com/space-invaders/index.html)
+* [MDN: Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
