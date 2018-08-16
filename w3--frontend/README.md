@@ -20,3 +20,18 @@
 
 * [Solutions from class](solutions/lab-d1--class-solutions)
 * [Original solutions](solutions/lab-d1--original-solutions)
+
+## Day 3
+
+* Intro to object-oriented programming
+
+### Links
+
+* [Notes: OO Concepts](notes/w3d2--oo-concepts.md)
+* [Notes: OO in JavaScript](notes/w3d2--oo-javascript.md)
+* [The Secret Life of Objects: _Eloquent JavaScript_ on OOP](https://eloquentjavascript.net/06_object.html)
+* [Object-oriented JavaScript for beginners](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS)
+* [Object prototypes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
+* Understanding `this`
+  * [JavaScript `this` keyword explained simply](https://medium.com/@NinjaJavaScript/javascript-this-keyword-explained-simply-e90762d4945d)
+  * [Understanding JavaScript: This Keyword](https://hackernoon.com/understanding-javascript-the-this-keyword-4de325d77f68)
