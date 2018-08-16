@@ -14,11 +14,24 @@ class Game {
     this.size = { width: this.canvas.width, height: this.canvas.height }
     this.squares = { x: this.size.width / GRID_SIZE, y: this.size.height / GRID_SIZE }
 
-    this.snake = new Snake({
+    this.snake = new Snake(this, {
       x: Math.floor(this.squares.x / 2),
       y: Math.floor(this.squares.y / 2)}, 3)
 
     this.ticks = 0
+
+    let tick = () => {
+      this.ticks++
+      this.update()
+      this.draw()
+      window.requestAnimationFrame(tick)
+    }
+
+    this.tick = tick
+  }
+
+  start () {
+    this.tick()
   }
 
   update () {
@@ -26,6 +39,8 @@ class Game {
   }
 
   draw () {
+    this.context.clearRect(0, 0, this.size.width, this.size.height)
+
     this.context.fillStyle = COLORS.wall
     this.context.fillRect(0, 0, this.size.width, this.size.height)
 
@@ -36,32 +51,28 @@ class Game {
       (this.squares.x - 2) * GRID_SIZE,
       (this.squares.y - 2) * GRID_SIZE)
 
-    this.context.fillStyle = COLORS.grid
+    this.context.strokeStyle = COLORS.grid
+    this.context.lineWidth = 1
+
+    this.context.beginPath()
     for (var x = 0; x < this.size.width; x += GRID_SIZE) {
-      this.context.fillRect(x - 1, 0, 2, this.size.height)
+      this.context.moveTo(x, 0)
+      this.context.lineTo(x, this.size.height)
     }
 
     for (var y = 0; y < this.size.height; y += GRID_SIZE) {
-      this.context.fillRect(0, y - 1, this.size.width, 2)
+      this.context.moveTo(0, y)
+      this.context.lineTo(this.size.width, y)
     }
+    this.context.stroke()
 
-    this.snake.draw(this.context)
-  }
-
-  tick () {
-    this.ticks++
-    this.update()
-    this.draw()
-    window.requestAnimationFrame(() => this.tick())
-  }
-
-  start () {
-    this.tick()
+    this.snake.draw()
   }
 }
 
 class Snake {
-  constructor (headPos, segmentCount) {
+  constructor (game, headPos, segmentCount) {
+    this.game = game
     this.segments = []
     for (let i = 0; i < segmentCount; i++) {
       this.segments.push({x: headPos.x, y: headPos.y + i})
@@ -98,7 +109,7 @@ class Snake {
   }
 
   update (ticks) {
-    if (ticks % 30 === 0) {
+    if (ticks % 10 === 0) {
       let newSegment = {
         x: this.segments[0].x,
         y: this.segments[0].y
@@ -114,12 +125,20 @@ class Snake {
         newSegment.x++
       }
 
-      this.segments.unshift(newSegment)
-      this.segments.pop()
+      newSegment.x = Math.max(newSegment.x, 0)
+      newSegment.x = Math.min(newSegment.x, this.game.squares.x - 1)
+      newSegment.y = Math.max(newSegment.y, 0)
+      newSegment.y = Math.min(newSegment.y, this.game.squares.y - 1)
+
+      if (newSegment.x !== this.segments[0].x || newSegment.y !== this.segments[0].y) {
+        this.segments.unshift(newSegment)
+        this.segments.pop()
+      }
     }
   }
 
-  draw (context) {
+  draw () {
+    let context = this.game.context
     for (let i = 0; i < this.segments.length; i++) {
       let segment = this.segments[i]
       if (i === 0) {
