@@ -42,7 +42,11 @@ class Game {
 
     // Run the first game tick.  All future calls will be scheduled by
     // the tick() function itself.
-    tick()
+    this.tick = tick
+  }
+
+  start () {
+    this.tick()
   }
 
   // **update()** runs the main game logic.
@@ -284,5 +288,6 @@ const colliding = function (b1, b2) {
 
 // When the DOM is ready, create (and start) the game.
 window.addEventListener('load', function () {
-  new Game()
+  let game = new Game()
+  game.start()
 })
