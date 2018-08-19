@@ -123,6 +123,8 @@ class Game {
     this.tick = tick
   }
 
+  // ### Main game methods
+
   // On each tick, our `update` method is called, updating the game state. In
   // our version of Snake, the updates are limited:
   //
@@ -160,25 +162,32 @@ class Game {
       pellet.draw()
     }
     this.snake.draw()
-
     if (this.gameOver) {
-      this.screen.textAlign = 'center'
-      this.screen.font = '48px Helvetica'
-      this.screen.fillStyle = COLORS.wall
-      this.screen.fillText('game over', this.size.width / 2, this.size.height / 2)
+      this.drawGameOver()
     }
   }
 
+  // An alias for `.tick` so that our code is more readable.
   start () {
     this.tick()
   }
 
+  // ### Helper methods
+  // 
+  // The following methods are called from our `.update` and `.draw` methods.
+  // Unlike `.update` and `.draw`, which should be found in every game, these
+  // will differ between games.
+
+  // If our snake hits a wall or its own tail, set the game to be over.
   checkGameOver () {
-    if (doesIntersectWithArray(this.snake.head(), this.snake.tail()) || this.snakeHitsWall()) {
+    if (this.snakeHitsWall() || doesIntersectWithArray(this.snake.head(), this.snake.tail())) {
       this.gameOver = true
     }
   }
 
+  // Detecting collision with the wall looks to see if the snake head is
+  // "out of bounds": that is, if it has an x or y position that is beyond
+  // where it's supposed to be.
   snakeHitsWall () {
     let snakeHead = this.snake.head()
     return (
@@ -188,6 +197,9 @@ class Game {
       snakeHead.y === this.squares.y - 1
     )
   }
+
+  // The following functions all draw parts of the game using the
+  // canvas and are not individually commented.
 
   drawWall () {
     this.screen.fillStyle = COLORS.wall
@@ -205,6 +217,8 @@ class Game {
     this.screen.strokeStyle = COLORS.grid
     this.screen.lineWidth = 1
 
+    // See https://dreisbach.us/notes/begin-path/ to understand why we need to
+    // call `this.screen.beginPath()` here.
     this.screen.beginPath()
     for (var x = 0; x < this.size.width; x += GRID_SIZE) {
       this.screen.moveTo(x, 0)
@@ -219,8 +233,28 @@ class Game {
     this.screen.stroke()
   }
 
+  drawGameOver () {
+    this.screen.textAlign = 'center'
+    this.screen.font = '48px Helvetica'
+    this.screen.fillStyle = COLORS.wall
+    this.screen.fillText('game over', this.size.width / 2, this.size.height / 2)
+  }
+
+  // Put a new pellet on the grid. Ensure that the pellet is not on top of a 
+  // current pellet or on top of the snake.
   placePellet () {
-    // choose a random location
+    // `foundValidPos` is an example of a common practice, the _flag_. We use
+    // this when we need to iterate an unknown number of times. In our case,
+    // we need to come up with a random location and then check to make sure
+    // it's in a valid position. We set `foundValidPos` to false and then
+    // use a while loop to pick a position and check its validity. Once
+    // valid, we set `foundValidPos` to true, causing the loop to end.
+    //
+    // There are other options here. You could loop forever using
+    // `while (true)` and then use `break` to end the loop once you find
+    // a valid position. I find this more readable, though. You could
+    // also use a `do...while` loop, but those are not often seen in
+    // the wild and can therefore be confusing.
     let foundValidPos = false
     let pos
     while (!foundValidPos) {
@@ -233,11 +267,12 @@ class Game {
                         doesIntersectWithArray(pos, this.pellets))
     }
 
-    // add pellet at that location
-    console.log('adding pellet', pos)
+    // Create a new pellet at the found position and push it onto our
+    // array of pellets.
     this.pellets.push(new Pellet(this, pos))
   }
 
+  // Given a position, filter out any pellets that exist at that position.
   removePellet (pos) {
     this.pellets = this.pellets.filter(function (pellet) {
       return !isSamePos(pos, pellet)
