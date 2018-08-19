@@ -63,11 +63,9 @@ function doesIntersectWithArray (pos, posArray) {
 // state, running the game loop, and drawing the canvas.
 
 class Game {
-
   // The constructor creates an object. It sets up all the properties we will
   // use to run the game.
   constructor (canvasId) {
-
     // The `canvas` element is used for bitmap drawing. To get the object with
     // drawing commands -- which we will call `screen` -- we have to run
     // `.getContext('2d')` on the canvas.
@@ -96,7 +94,6 @@ class Game {
       x: Math.floor(this.squares.x / 2),
       y: Math.floor(this.squares.y / 2)}, 3)
     this.pellets = []
-
 
     // This `tick` function runs the game loop. On each run, it increments
     // `this.ticks`, calls `.update` and `.draw` and then, if the game is
@@ -159,9 +156,9 @@ class Game {
     }
 
     for (let pellet of this.pellets) {
-      pellet.draw()
+      pellet.draw(this.screen)
     }
-    this.snake.draw()
+    this.snake.draw(this.screen)
     if (this.gameOver) {
       this.drawGameOver()
     }
@@ -173,7 +170,7 @@ class Game {
   }
 
   // ### Helper methods
-  // 
+  //
   // The following methods are called from our `.update` and `.draw` methods.
   // Unlike `.update` and `.draw`, which should be found in every game, these
   // will differ between games.
@@ -240,7 +237,7 @@ class Game {
     this.screen.fillText('game over', this.size.width / 2, this.size.height / 2)
   }
 
-  // Put a new pellet on the grid. Ensure that the pellet is not on top of a 
+  // Put a new pellet on the grid. Ensure that the pellet is not on top of a
   // current pellet or on top of the snake.
   placePellet () {
     // `foundValidPos` is an example of a common practice, the _flag_. We use
@@ -280,56 +277,98 @@ class Game {
   }
 }
 
+// ## Snake class
+
 class Snake {
+  // The constructor creates a Snake object. It sets up all the snake's properties.
+  //
+  // Passing our Game object (`game`) to the snake's constructor is unintuitive. The
+  // game needs to know about the snake -- why would the snake need to know about the
+  // game? We do this because we need *bi-directional* communication between the snake
+  // and the game. The snake needs to know where the pellets are in order to find out
+  // if it's eaten one.
+  //
+  // An alternative would be to put the code to determine if the snake has eaten a pellet
+  // in the game.
   constructor (game, headPos, segmentCount) {
     this.game = game
+    
+    // Our snake is made of an array of positions representing each of its segments.
+    // We build out the original snake with some assumptions -- the snake is pointing up
+    // and we have enough room to build it without hitting a wall.
     this.segments = []
-    this.growing = false
     for (let i = 0; i < segmentCount; i++) {
       this.segments.push({x: headPos.x, y: headPos.y + i})
     }
+    
+    // Track the direction the snake is moving and whether it is currently growing.
     this.direction = 'up'
-    this.keyboarder = new Keyboarder()
+    this.growing = false
 
+    // Our keyboarder lets us respond to key events. Using events to make individual
+    // moves is done because of our discrete movement. One keypress should equal one
+    // turn.
+    this.keyboarder = new Keyboarder()
     this.keyboarder.on(Keyboarder.KEYS.LEFT, () => this.turnLeft())
     this.keyboarder.on(Keyboarder.KEYS.RIGHT, () => this.turnRight())
   }
 
+  // `.update` is called by the game object on every tick.
   update (ticks) {
+    // Check to see if our snake has eaten a pellet. If so, set `this.growing`
+    // to true so we can know that when growing the snake.
     if (doesIntersectWithArray(this.segments[0], this.game.pellets)) {
       this.game.removePellet(this.segments[0])
       this.growing = true
     }
 
+    // Only move the snake every `TICKS_PER_MOVE` ticks.
     if (ticks % TICKS_PER_MOVE === 0) {
       this.moveSnake()
     }
   }
 
-  draw () {
-    let screen = this.game.screen
-    for (let i = this.segments.length - 1; i >= 0; i--) {
-      let segment = this.segments[i]
-      if (i === 0) {
-        screen.fillStyle = COLORS.snakeHead
-      } else {
-        screen.fillStyle = COLORS.snakeBody
-      }
+  // `.draw` draws our snake. It takes `screen` as an argument. This screen --
+  // the canvas's context -- is part of the game, which is stored in `this.game`,
+  // so we don't technically need to pass it, but it's a good practice to
+  // give a method the things it depends on as arguments. If we ever removed
+  // the game from Snake's constructor, `.draw` would still work.
+  draw (screen) {
+    screen.fillStyle = COLORS.snakeBody
+    for (let segment of this.tail()) {
       screen.fillRect(
         segment.x * GRID_SIZE,
         segment.y * GRID_SIZE,
         GRID_SIZE, GRID_SIZE)
     }
+
+    // We draw the head last so it will show up if we run into the snake's body.
+    screen.fillStyle = COLORS.snakeHead
+    screen.fillRect(
+      this.head().x * GRID_SIZE,
+      this.head().y * GRID_SIZE,
+      GRID_SIZE, GRID_SIZE)
   }
 
+  // The first segment is the head.
   head () {
     return this.segments[0]
   }
 
+  // The rest of the segments are the snake's tail.
   tail () {
     return this.segments.slice(1)
   }
 
+  // Our `.turnLeft` and `.turnRight` methods handle how to change direction.
+  // Our controls -- the left and right keys -- turn the snake left and right
+  // according to its orientation, not ours, so if the snake is headed down,
+  // turning left turns it to our right.
+  // 
+  // These functions could be written more tersely by using an object to hold
+  // the mappings from current direction to the left and then inverting it
+  // or implementing `turnRight` as turning left three times, but all of that
+  // seems like overkill for something this simple.
   turnLeft () {
     if (this.direction === 'up') {
       this.direction = 'left'
@@ -354,6 +393,13 @@ class Snake {
     }
   }
 
+  // The method to move a snake uses our `.segments` array's built-in methods.
+  // Since the first segment is the head, and we know which way the snake is
+  // moving, we add a new segment to the beginning of the array with the new head's
+  // position.
+  //
+  // Normally, we remove the last segment as well, but if the snake is currently
+  // growing, we leave it. Leaving it allows the snake to grow at the end seamlessly.
   moveSnake () {
     let newSegment = {
       x: this.segments[0].x,
@@ -370,18 +416,12 @@ class Snake {
       newSegment.x++
     }
 
-    newSegment.x = Math.max(newSegment.x, 0)
-    newSegment.x = Math.min(newSegment.x, this.game.squares.x - 1)
-    newSegment.y = Math.max(newSegment.y, 0)
-    newSegment.y = Math.min(newSegment.y, this.game.squares.y - 1)
-
-    if (newSegment.x !== this.segments[0].x || newSegment.y !== this.segments[0].y) {
-      this.segments.unshift(newSegment)
-      if (this.growing) {
-        this.growing = false
-      } else {
-        this.segments.pop()
-      }
+    this.segments.unshift(newSegment)
+    if (this.growing) {
+      // Once our snake is grown, set the `.growing` flag back to false.
+      this.growing = false
+    } else {
+      this.segments.pop()
     }
   }
 }
@@ -393,13 +433,9 @@ class Pellet {
     this.y = pos.y
   }
 
-  update () {
-
-  }
-
-  draw () {
-    this.game.screen.fillStyle = COLORS.pellet
-    this.game.screen.fillRect(
+  draw (screen) {
+    screen.fillStyle = COLORS.pellet
+    screen.fillRect(
       this.x * GRID_SIZE,
       this.y * GRID_SIZE,
       GRID_SIZE, GRID_SIZE)

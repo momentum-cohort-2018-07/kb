@@ -423,9 +423,9 @@ time to prevent visual artifacts from previous draws.</p>
     }
 
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> pellet <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.pellets) {
-      pellet.draw()
+      pellet.draw(<span class="hljs-keyword">this</span>.screen)
     }
-    <span class="hljs-keyword">this</span>.snake.draw()
+    <span class="hljs-keyword">this</span>.snake.draw(<span class="hljs-keyword">this</span>.screen)
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.gameOver) {
       <span class="hljs-keyword">this</span>.drawGameOver()
     }
@@ -583,7 +583,7 @@ call <code>this.screen.beginPath()</code> here.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
-              <p>Put a new pellet on the grid. Ensure that the pellet is not on top of a 
+              <p>Put a new pellet on the grid. Ensure that the pellet is not on top of a
 current pellet or on top of the snake.</p>
 
             </div>
@@ -660,59 +660,256 @@ array of pellets.</p>
       <span class="hljs-keyword">return</span> !isSamePos(pos, pellet)
     })
   }
-}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <h2 id="snake-class">Snake class</h2>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Snake</span> </span>{
-  <span class="hljs-keyword">constructor</span> (game, headPos, segmentCount) {
-    <span class="hljs-keyword">this</span>.game = game
-    <span class="hljs-keyword">this</span>.segments = []
-    <span class="hljs-keyword">this</span>.growing = <span class="hljs-literal">false</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Snake</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>The constructor creates a Snake object. It sets up all the snake’s properties.</p>
+<p>Passing our Game object (<code>game</code>) to the snake’s constructor is unintuitive. The
+game needs to know about the snake – why would the snake need to know about the
+game? We do this because we need <em>bi-directional</em> communication between the snake
+and the game. The snake needs to know where the pellets are in order to find out
+if it’s eaten one.</p>
+<p>An alternative would be to put the code to determine if the snake has eaten a pellet
+in the game.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">constructor</span> (game, headPos, segmentCount) {
+    <span class="hljs-keyword">this</span>.game = game</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Our snake is made of an array of positions representing each of its segments.
+We build out the original snake with some assumptions – the snake is pointing up
+and we have enough room to build it without hitting a wall.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.segments = []
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; segmentCount; i++) {
       <span class="hljs-keyword">this</span>.segments.push({<span class="hljs-attr">x</span>: headPos.x, <span class="hljs-attr">y</span>: headPos.y + i})
-    }
-    <span class="hljs-keyword">this</span>.direction = <span class="hljs-string">'up'</span>
-    <span class="hljs-keyword">this</span>.keyboarder = <span class="hljs-keyword">new</span> Keyboarder()
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Track the direction the snake is moving and whether it is currently growing.</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.direction = <span class="hljs-string">'up'</span>
+    <span class="hljs-keyword">this</span>.growing = <span class="hljs-literal">false</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Our keyboarder lets us respond to key events. Using events to make individual
+moves is done because of our discrete movement. One keypress should equal one
+turn.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.keyboarder = <span class="hljs-keyword">new</span> Keyboarder()
     <span class="hljs-keyword">this</span>.keyboarder.on(Keyboarder.KEYS.LEFT, () =&gt; <span class="hljs-keyword">this</span>.turnLeft())
     <span class="hljs-keyword">this</span>.keyboarder.on(Keyboarder.KEYS.RIGHT, () =&gt; <span class="hljs-keyword">this</span>.turnRight())
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p><code>.update</code> is called by the game object on every tick.</p>
 
-  update (ticks) {
-    <span class="hljs-keyword">if</span> (doesIntersectWithArray(<span class="hljs-keyword">this</span>.segments[<span class="hljs-number">0</span>], <span class="hljs-keyword">this</span>.game.pellets)) {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  update (ticks) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>Check to see if our snake has eaten a pellet. If so, set <code>this.growing</code>
+to true so we can know that when growing the snake.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (doesIntersectWithArray(<span class="hljs-keyword">this</span>.segments[<span class="hljs-number">0</span>], <span class="hljs-keyword">this</span>.game.pellets)) {
       <span class="hljs-keyword">this</span>.game.removePellet(<span class="hljs-keyword">this</span>.segments[<span class="hljs-number">0</span>])
       <span class="hljs-keyword">this</span>.growing = <span class="hljs-literal">true</span>
-    }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>Only move the snake every <code>TICKS_PER_MOVE</code> ticks.</p>
 
-    <span class="hljs-keyword">if</span> (ticks % TICKS_PER_MOVE === <span class="hljs-number">0</span>) {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (ticks % TICKS_PER_MOVE === <span class="hljs-number">0</span>) {
       <span class="hljs-keyword">this</span>.moveSnake()
     }
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p><code>.draw</code> draws our snake. It takes <code>screen</code> as an argument. This screen –
+the canvas’s context – is part of the game, which is stored in <code>this.game</code>,
+so we don’t technically need to pass it, but it’s a good practice to
+give a method the things it depends on as arguments. If we ever removed
+the game from Snake’s constructor, <code>.draw</code> would still work.</p>
 
-  draw () {
-    <span class="hljs-keyword">let</span> screen = <span class="hljs-keyword">this</span>.game.screen
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-keyword">this</span>.segments.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
-      <span class="hljs-keyword">let</span> segment = <span class="hljs-keyword">this</span>.segments[i]
-      <span class="hljs-keyword">if</span> (i === <span class="hljs-number">0</span>) {
-        screen.fillStyle = COLORS.snakeHead
-      } <span class="hljs-keyword">else</span> {
-        screen.fillStyle = COLORS.snakeBody
-      }
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  draw (screen) {
+    screen.fillStyle = COLORS.snakeBody
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> segment <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.tail()) {
       screen.fillRect(
         segment.x * GRID_SIZE,
         segment.y * GRID_SIZE,
         GRID_SIZE, GRID_SIZE)
-    }
-  }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p>We draw the head last so it will show up if we run into the snake’s body.</p>
 
-  head () {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    screen.fillStyle = COLORS.snakeHead
+    screen.fillRect(
+      <span class="hljs-keyword">this</span>.head().x * GRID_SIZE,
+      <span class="hljs-keyword">this</span>.head().y * GRID_SIZE,
+      GRID_SIZE, GRID_SIZE)
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>The first segment is the head.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  head () {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.segments[<span class="hljs-number">0</span>]
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p>The rest of the segments are the snake’s tail.</p>
 
-  tail () {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  tail () {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.segments.slice(<span class="hljs-number">1</span>)
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p>Our <code>.turnLeft</code> and <code>.turnRight</code> methods handle how to change direction.
+Our controls – the left and right keys – turn the snake left and right
+according to its orientation, not ours, so if the snake is headed down,
+turning left turns it to our right.</p>
+<p>These functions could be written more tersely by using an object to hold
+the mappings from current direction to the left and then inverting it
+or implementing <code>turnRight</code> as turning left three times, but all of that
+seems like overkill for something this simple.</p>
 
-  turnLeft () {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  turnLeft () {
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.direction === <span class="hljs-string">'up'</span>) {
       <span class="hljs-keyword">this</span>.direction = <span class="hljs-string">'left'</span>
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.direction === <span class="hljs-string">'left'</span>) {
@@ -734,9 +931,27 @@ array of pellets.</p>
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.direction === <span class="hljs-string">'right'</span>) {
       <span class="hljs-keyword">this</span>.direction = <span class="hljs-string">'down'</span>
     }
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>The method to move a snake uses our <code>.segments</code> array’s built-in methods.
+Since the first segment is the head, and we know which way the snake is
+moving, we add a new segment to the beginning of the array with the new head’s
+position.</p>
+<p>Normally, we remove the last segment as well, but if the snake is currently
+growing, we leave it. Leaving it allows the snake to grow at the end seamlessly.</p>
 
-  moveSnake () {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  moveSnake () {
     <span class="hljs-keyword">let</span> newSegment = {
       <span class="hljs-attr">x</span>: <span class="hljs-keyword">this</span>.segments[<span class="hljs-number">0</span>].x,
       <span class="hljs-attr">y</span>: <span class="hljs-keyword">this</span>.segments[<span class="hljs-number">0</span>].y
@@ -752,18 +967,25 @@ array of pellets.</p>
       newSegment.x++
     }
 
-    newSegment.x = <span class="hljs-built_in">Math</span>.max(newSegment.x, <span class="hljs-number">0</span>)
-    newSegment.x = <span class="hljs-built_in">Math</span>.min(newSegment.x, <span class="hljs-keyword">this</span>.game.squares.x - <span class="hljs-number">1</span>)
-    newSegment.y = <span class="hljs-built_in">Math</span>.max(newSegment.y, <span class="hljs-number">0</span>)
-    newSegment.y = <span class="hljs-built_in">Math</span>.min(newSegment.y, <span class="hljs-keyword">this</span>.game.squares.y - <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">this</span>.segments.unshift(newSegment)
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.growing) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>Once our snake is grown, set the <code>.growing</code> flag back to false.</p>
 
-    <span class="hljs-keyword">if</span> (newSegment.x !== <span class="hljs-keyword">this</span>.segments[<span class="hljs-number">0</span>].x || newSegment.y !== <span class="hljs-keyword">this</span>.segments[<span class="hljs-number">0</span>].y) {
-      <span class="hljs-keyword">this</span>.segments.unshift(newSegment)
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.growing) {
-        <span class="hljs-keyword">this</span>.growing = <span class="hljs-literal">false</span>
-      } <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">this</span>.segments.pop()
-      }
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.growing = <span class="hljs-literal">false</span>
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">this</span>.segments.pop()
     }
   }
 }
@@ -775,13 +997,9 @@ array of pellets.</p>
     <span class="hljs-keyword">this</span>.y = pos.y
   }
 
-  update () {
-
-  }
-
-  draw () {
-    <span class="hljs-keyword">this</span>.game.screen.fillStyle = COLORS.pellet
-    <span class="hljs-keyword">this</span>.game.screen.fillRect(
+  draw (screen) {
+    screen.fillStyle = COLORS.pellet
+    screen.fillRect(
       <span class="hljs-keyword">this</span>.x * GRID_SIZE,
       <span class="hljs-keyword">this</span>.y * GRID_SIZE,
       GRID_SIZE, GRID_SIZE)
