@@ -639,7 +639,7 @@ array of pellets.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.pellets.push(<span class="hljs-keyword">new</span> Pellet(<span class="hljs-keyword">this</span>, pos))
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.pellets.push(<span class="hljs-keyword">new</span> Pellet(pos))
   }</pre></div></div>
             
         </li>
@@ -988,11 +988,25 @@ growing, we leave it. Leaving it allows the snake to grow at the end seamlessly.
       <span class="hljs-keyword">this</span>.segments.pop()
     }
   }
-}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <h2 id="pellet-class">Pellet class</h2>
+<p>Our pellet class is very small. It is essentially a set of coordinates
+that knows how to draw itself.</p>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pellet</span> </span>{
-  <span class="hljs-keyword">constructor</span> (game, pos) {
-    <span class="hljs-keyword">this</span>.game = game
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pellet</span> </span>{
+  <span class="hljs-keyword">constructor</span> (pos) {
     <span class="hljs-keyword">this</span>.x = pos.x
     <span class="hljs-keyword">this</span>.y = pos.y
   }
@@ -1004,9 +1018,25 @@ growing, we leave it. Leaving it allows the snake to grow at the end seamlessly.
       <span class="hljs-keyword">this</span>.y * GRID_SIZE,
       GRID_SIZE, GRID_SIZE)
   }
-}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <h2 id="keyboarder-class">Keyboarder class</h2>
+<p>This utility class gets cut and pasted into almost every game I write.
+It tracks what keys are currently pressed using event handlers to track
+keydown and keyup events.</p>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Keyboarder</span> </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Keyboarder</span> </span>{
   <span class="hljs-keyword">constructor</span> () {
     <span class="hljs-keyword">this</span>.keyState = {}
 
@@ -1021,20 +1051,63 @@ growing, we leave it. Leaving it allows the snake to grow at the end seamlessly.
 
   isDown (keyCode) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.keyState[keyCode] === <span class="hljs-literal">true</span>
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>For our snake game, we don’t actually care which keys are pressed
+at any moment. Instead, we want to respond at the moment a key is pressed.
+Our <code>.on</code> method wraps <code>window.addEventListener</code> to check the keycode
+before triggering the callback.</p>
 
-  on (keyCode, callback) {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  on (keyCode, callback) {
     <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'keydown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
       <span class="hljs-keyword">if</span> (e.keyCode === keyCode) {
         callback()
       }
     })
   }
-}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>Each key has a key code associated with it. Since we don’t want to
+remember them, we set up an object with names for common key codes.</p>
 
-Keyboarder.KEYS = { <span class="hljs-attr">LEFT</span>: <span class="hljs-number">37</span>, <span class="hljs-attr">RIGHT</span>: <span class="hljs-number">39</span>, <span class="hljs-attr">UP</span>: <span class="hljs-number">38</span>, <span class="hljs-attr">DOWN</span>: <span class="hljs-number">40</span>, <span class="hljs-attr">S</span>: <span class="hljs-number">83</span> }
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Keyboarder.KEYS = { <span class="hljs-attr">LEFT</span>: <span class="hljs-number">37</span>, <span class="hljs-attr">RIGHT</span>: <span class="hljs-number">39</span>, <span class="hljs-attr">UP</span>: <span class="hljs-number">38</span>, <span class="hljs-attr">DOWN</span>: <span class="hljs-number">40</span>, <span class="hljs-attr">S</span>: <span class="hljs-number">83</span> }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>Start the game.</p>
 
-<span class="hljs-keyword">let</span> game = <span class="hljs-keyword">new</span> Game(<span class="hljs-string">'game-canvas'</span>)
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">let</span> game = <span class="hljs-keyword">new</span> Game(<span class="hljs-string">'game-canvas'</span>)
 game.start()</pre></div></div>
             
         </li>
