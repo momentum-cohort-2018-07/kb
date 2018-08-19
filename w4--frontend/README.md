@@ -4,6 +4,7 @@
 
 * npm & yarn
 * standard.js
+* [Exercise: Alter Space Invaders](exercises/alter-space/)
 * Parcel
 * Modules
 * Lab: Review W3 project -- use modules and standard.js

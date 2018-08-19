@@ -292,7 +292,7 @@ class Snake {
   // in the game.
   constructor (game, headPos, segmentCount) {
     this.game = game
-    
+
     // Our snake is made of an array of positions representing each of its segments.
     // We build out the original snake with some assumptions -- the snake is pointing up
     // and we have enough room to build it without hitting a wall.
@@ -300,7 +300,7 @@ class Snake {
     for (let i = 0; i < segmentCount; i++) {
       this.segments.push({x: headPos.x, y: headPos.y + i})
     }
-    
+
     // Track the direction the snake is moving and whether it is currently growing.
     this.direction = 'up'
     this.growing = false
@@ -364,7 +364,7 @@ class Snake {
   // Our controls -- the left and right keys -- turn the snake left and right
   // according to its orientation, not ours, so if the snake is headed down,
   // turning left turns it to our right.
-  // 
+  //
   // These functions could be written more tersely by using an object to hold
   // the mappings from current direction to the left and then inverting it
   // or implementing `turnRight` as turning left three times, but all of that
