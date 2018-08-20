@@ -9,6 +9,10 @@
 * Modules
 * Lab: Review W3 project -- use modules and standard.js
 
+### Links
+
+* [Understanding ES6 modules (import/export)](https://www.sitepoint.com/understanding-es6-modules/)
+  
 ## Day 2
 
 * JSON
