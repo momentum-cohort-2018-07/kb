@@ -11,6 +11,7 @@
 
 ### Links
 
+* [Parcel](https://parceljs.org/)
 * [Understanding ES6 modules (import/export)](https://www.sitepoint.com/understanding-es6-modules/)
   
 ## Day 2
