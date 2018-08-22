@@ -6,6 +6,7 @@ let field = document.getElementById('search-term')
 form.addEventListener('submit', event => {
   event.preventDefault()
   let searchTerm = window.encodeURIComponent(field.value)
+
   request.get('https://www.googleapis.com/books/v1/volumes?q=' + searchTerm)
     .then(response => {
       displayBookResults(response.body)

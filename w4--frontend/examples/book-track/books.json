@@ -1,0 +1,76 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Lila",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "read"
+    },
+    {
+      "id": 2,
+      "title": "Home",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "read"
+    },
+    {
+      "id": 3,
+      "title": "Gilead",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "read"
+    },
+    {
+      "id": 4,
+      "title": "Alt-Right: From 4chan to the White House",
+      "authors": [
+        "Mike Wendling"
+      ],
+      "status": "reading"
+    },
+    {
+      "id": 5,
+      "title": "What Are We Doing Here?",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "to-read"
+    },
+    {
+      "id": "d4b8768c-2767-438f-9777-7ddd415bfbbb",
+      "title": "Roosevelt Rex",
+      "authors": [
+        "Teddy Roosevelt"
+      ],
+      "status": "to-read"
+    },
+    {
+      "id": "68f6cd1d-2fff-4fa9-9546-4f4529f5192c",
+      "title": "The Death of Adam: Essays on Modern Thought",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "to-read"
+    },
+    {
+      "id": "e4c4f6a3-4ca0-4743-a367-658e7d4c950b",
+      "title": "The Castle of Llyr",
+      "authors": [
+        "Lloyd Alexander"
+      ],
+      "status": "reading"
+    },
+    {
+      "id": "9c75d8f0-a614-4ca5-9fb6-71efae464b44",
+      "title": "When I Was a Child I Read Books",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "to-read"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "dependencies": {
+    "json-server": "^0.14.0",
+    "shoelace-css": "^1.0.0-beta24",
+    "superagent": "^3.8.3",
+    "uuid": "^3.3.2"
+  }
+}

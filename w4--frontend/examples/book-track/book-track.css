@@ -1,0 +1,23 @@
+body {
+  margin-top: 2rem;
+}
+
+.header-row {
+  align-items: flex-end;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.hidden {
+  display: none;
+}
+
+.book a.text-danger {
+  display: none;
+}
+
+.book:hover a.text-danger {
+  display: inline;
+}
