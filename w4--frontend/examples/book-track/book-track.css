@@ -14,10 +14,14 @@ body {
   display: none;
 }
 
-.book a.text-danger {
+.book .delete-book, .book .promote-button {
   display: none;
 }
 
-.book:hover a.text-danger {
+.book:hover .promote-button {
+  display: inline-block;
+}
+
+.book:hover .delete-book {
   display: inline;
 }
