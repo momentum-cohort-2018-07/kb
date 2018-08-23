@@ -51,6 +51,7 @@
 - [Understanding Rails Routing](https://richonrails.com/articles/understanding-rails-routing)
 - [Active Record Basics](http://edgeguides.rubyonrails.org/active_record_basics.html)
 - [Active Record Queries from the Odin Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/active-record-queries)
+- [Rails Models/Active Record Cheat Sheet](https://devhints.io/rails-models)
 - [Rails Guides Active Record Querying](http://guides.rubyonrails.org/active_record_querying.html)
 - [Active Record Validations](http://guides.rubyonrails.org/active_record_validations.html)
 - [Rails Guides: Form Helpers](http://guides.rubyonrails.org/form_helpers.html#binding-a-form-to-an-object)
@@ -59,9 +60,7 @@
 
 ## Day 4
 
-- using PostgreSQL with Rails
-- Database migrations, rollback, schema.rb
-- Deploying to Heroku
+- Review
 
 ### Links
 
