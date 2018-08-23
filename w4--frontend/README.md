@@ -43,5 +43,9 @@
 * Event delegation
 * Review
 * (bonus) DOM manipulation w/ jQuery
-* (bonus) Helper functions w/ LoDash
 * Project: iTunes search
+
+### Links
+
+* [An explanation of event delegation](https://davidwalsh.name/event-delegate)
+* [jQuery](https://jquery.com/)
