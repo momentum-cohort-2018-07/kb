@@ -1,8 +1,4 @@
-function el (tagName, attrs, children) {
-  if (children === undefined) {
-    children = []
-  }
-
+function el (tagName = 'div', attrs = {}, children = []) {
   let element = document.createElement(tagName)
 
   // TODO use attrs
@@ -18,7 +14,7 @@ function el (tagName, attrs, children) {
     } else if (key === 'onclick') {
       element.addEventListener('click', attrs[key])
     } else {
-      element[key] = attrs[key]
+      element.setAttribute(key, attrs[key])
     }
 
     // switch (key) {

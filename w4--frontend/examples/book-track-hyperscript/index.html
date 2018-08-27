@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Book Track</title>
+  <script src="book-track.js" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row header-row">
+      <div class="col">
+        <h1>Book Track</h1>
+      </div>
+      <div class="col align-right">
+        <button id="add-book-button">Add Book</button>
+      </div>
+    </div>
+    <form class="hidden" id="new-book-form" style="margin-bottom: 2rem;">
+      <div class="row">
+        <div class="col">
+          <div class="input-field">
+            <label for="book-title">Title</label>
+            <input type="text" id="book-title" name="title" required>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-field">
+            <label for="book-title">Authors</label>
+            <input type="text" id="book-authors" name="authors" required>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-field">
+            <label for="book-status">Status</label>
+            <select id="book-status" for="status">
+              <option value="to-read">To Read</option>
+              <option value="reading">Reading</option>
+              <option value="read">Read</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Add Book</button>
+    </form>
+    <div id="books">
+      <h2>To Read</h2>
+      <section id="to-read">
+      </section>
+
+      <h2>Reading</h2>
+      <section id="reading">
+      </section>
+
+      <h2>Read</h2>
+      <section id="read">
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>

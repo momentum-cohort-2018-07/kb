@@ -1,0 +1,52 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Lila",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "read"
+    },
+    {
+      "id": 2,
+      "title": "Home",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "read"
+    },
+    {
+      "id": 3,
+      "title": "Gilead",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "read"
+    },
+    {
+      "id": 4,
+      "title": "Alt-Right: From 4chan to the White House",
+      "authors": [
+        "Mike Wendling"
+      ],
+      "status": "read"
+    },
+    {
+      "id": 5,
+      "title": "What Are We Doing Here?",
+      "authors": [
+        "Marilynne Robinson"
+      ],
+      "status": "reading"
+    },
+    {
+      "id": "e4c4f6a3-4ca0-4743-a367-658e7d4c950b",
+      "title": "The Castle of Llyr",
+      "authors": [
+        "Lloyd Alexander"
+      ],
+      "status": "reading"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+body {
+  margin-top: 2rem;
+}
+
+.header-row {
+  align-items: flex-end;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.hidden {
+  display: none;
+}
+
+.book .delete-book, .book .promote-button {
+  display: none;
+}
+
+.book:hover .promote-button {
+  display: inline-block;
+}
+
+.book:hover .delete-book {
+  display: inline;
+}
