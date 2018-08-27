@@ -1,0 +1,14 @@
+{
+  "name": "el",
+  "version": "0.0.1",
+  "description": "Provide an easy syntax to create DOM elements.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.5.0"
+  }
+}
