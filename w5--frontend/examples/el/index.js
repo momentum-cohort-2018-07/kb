@@ -2,44 +2,24 @@ function el (tagName = 'div', attrs = {}, children = []) {
   let element = document.createElement(tagName)
 
   // TODO use attrs
-  for (let key of Object.keys(attrs)) {
-    if (key === 'classList') {
-      for (let cssClass of attrs[key]) {
+  for (let pair of Object.entries(attrs)) {
+    let [key, value] = pair
+    if (key === 'className') {
+      element.classList.add(value)
+    } else if (key === 'classList') {
+      for (let cssClass of value) {
         element.classList.add(cssClass)
       }
     } else if (key === 'dataset') {
-      for (let dataKey of Object.keys(attrs[key])) {
-        element.dataset[dataKey] = attrs[key][dataKey]
+      for (let dataKey of Object.keys(value)) {
+        element.dataset[dataKey] = value[dataKey]
       }
-    } else if (key === 'onclick') {
-      element.addEventListener('click', attrs[key])
+    } else if (key.startsWith('on')) {
+      element.addEventListener(key.slice(2), value)
     } else {
-      element.setAttribute(key, attrs[key])
+      element.setAttribute(key, value)
     }
-
-    // switch (key) {
-    //   case 'classList':
-    //     for (let cssClass of attrs[key]) {
-    //       element.classList.add(cssClass)
-    //     }
-    //     break
-    //   case 'dataset':
-    //     for (let dataKey of Object.keys(attrs[key])) {
-    //       element.dataset[dataKey] = attrs[key][dataKey]
-    //     }
-    //     break
-    //   case 'onclick':
-    //     element.addEventListener('click', attrs[key])
-    //     break
-    //   default:
-    //     element.setAttribute(key, attrs[key])
-    // }
   }
-
-  // for (let i = 0; i < children.length; i++) {
-  //   let child = children[i]
-  //   element.appendChild(child)
-  // }
 
   for (let child of children) {
     if (typeof child === 'string') {
