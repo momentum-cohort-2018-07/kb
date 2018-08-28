@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "shoelace-css": "^1.0.0-beta24"
+  }
+}
