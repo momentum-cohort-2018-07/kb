@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "shoelace-css": "^1.0.0-beta24"
+    "shoelace-css": "^1.0.0-beta24",
+    "superagent": "^3.8.3"
   }
 }
