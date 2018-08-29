@@ -1,1 +1,9 @@
-{"private": true}
+{
+  "private": true,
+  "dependencies": {
+    "hyperscript": "^2.0.2",
+    "hyperscript-helpers": "^3.0.3",
+    "shoelace-css": "^1.0.0-beta24",
+    "superagent": "^3.8.3"
+  }
+}
