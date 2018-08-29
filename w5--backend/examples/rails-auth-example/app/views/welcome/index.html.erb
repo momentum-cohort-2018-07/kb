@@ -1,0 +1,5 @@
+<h1>Hello, you are logged in!</h1>
+
+<% if current_user %>
+  <%= link_to 'Log Out', session_path, method: :delete %>
+<% end %>
