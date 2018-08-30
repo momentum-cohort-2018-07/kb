@@ -1,9 +1,9 @@
 import request from 'superagent'
 
-class API {
-  constructor () {
-    this.baseURI = 'https://snippet-api.glitch.me/api/'
-  }
+const api = {
+  username: null,
+  password: null,
+  baseURI: 'https://snippet-api.glitch.me/api/',
 
   login (username, password) {
     return request.post(this.baseURI + 'login')
@@ -16,7 +16,7 @@ class API {
         }
         return false
       })
-  }
+  },
 
   getSnippets () {
     if (!this.username || !this.password) {
@@ -30,7 +30,5 @@ class API {
       })
   }
 }
-
-const api = new API()
 
 export default api
