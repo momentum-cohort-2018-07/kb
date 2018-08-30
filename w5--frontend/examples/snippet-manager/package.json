@@ -3,7 +3,9 @@
   "dependencies": {
     "hyperscript": "^2.0.2",
     "hyperscript-helpers": "^3.0.3",
+    "lodash": "^4.17.10",
     "shoelace-css": "^1.0.0-beta24",
+    "store": "^2.0.12",
     "superagent": "^3.8.3"
   }
 }

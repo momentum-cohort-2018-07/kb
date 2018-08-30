@@ -8,7 +8,3 @@ export function mount (child) {
     root.appendChild(child)
   }
 }
-
-export function update (child) {
-  mount(child)
-}

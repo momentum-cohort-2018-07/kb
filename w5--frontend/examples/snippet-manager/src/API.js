@@ -1,8 +1,7 @@
 import request from 'superagent'
+import store from './store'
 
 const api = {
-  username: null,
-  password: null,
   baseURI: 'https://snippet-api.glitch.me/api/',
 
   login (username, password) {
@@ -10,24 +9,26 @@ const api = {
       .send({ username, password })
       .then(res => {
         if (res.body.user) {
-          this.username = username
-          this.password = password
+          store.setUsernameAndPassword(res.body.user.username, res.body.user.password)
           return true
         }
         return false
       })
   },
 
-  getSnippets () {
-    if (!this.username || !this.password) {
-      throw new Error('Must be logged in')
-    }
-
+  getSnippets (username, password) {
     return request.get(this.baseURI + 'snippets')
-      .auth(this.username, this.password)
+      .auth(username, password)
       .then(res => {
         return res.body.snippets
       })
+  },
+
+  updateSnippet (username, password, id, snippet) {
+    return request.put(this.baseURI + `snippets/${id}`)
+      .auth(username, password)
+      .send(snippet)
+      .then(res => res.body)
   }
 }
 
