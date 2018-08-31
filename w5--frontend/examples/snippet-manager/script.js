@@ -3,4 +3,4 @@ import './styles.css'
 
 import app from './src/app'
 
-app.store.retrieveSnippets()
+app.start()

@@ -116,6 +116,7 @@ export function mainView () {
 }
 
 const views = {
+  app: app,
   main: mainView,
   editSnippet: editSnippetView,
   login: loginForm

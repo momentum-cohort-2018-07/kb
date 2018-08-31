@@ -1,5 +1,4 @@
 import lodash from 'lodash'
-import { mount } from './page'
 import api from './api'
 
 const store = {
@@ -7,7 +6,7 @@ const store = {
   password: window.localStorage.getItem('password'),
   snippets: [],
   view: ['app'],
-  topView: () => document.createElement('div'),
+  refreshFn: () => console.log(this),
 
   setUsernameAndPassword (username, password) {
     window.localStorage.setItem('username', username)
@@ -30,7 +29,7 @@ const store = {
   },
 
   updatePage () {
-    mount(this.topView())
+    this.refreshFn()
   },
 
   changeView (view, viewParams) {
@@ -47,7 +46,6 @@ const store = {
         const snippets = lodash.cloneDeep(this.snippets)
         const index = this.snippets.findIndex(snippet => snippet._id === id)
         snippets[index] = snippet
-        console.log(snippet)
         this.setData({
           snippets: snippets
         })
