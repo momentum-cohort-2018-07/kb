@@ -1,6 +1,5 @@
 import lodash from 'lodash'
 import { mount } from './page'
-import setupViews from './views'
 import api from './api'
 
 const store = {
@@ -8,7 +7,7 @@ const store = {
   password: window.localStorage.getItem('password'),
   snippets: [],
   view: ['app'],
-  router: null,
+  topView: () => document.createElement('div'),
 
   setUsernameAndPassword (username, password) {
     window.localStorage.setItem('username', username)
@@ -31,7 +30,7 @@ const store = {
   },
 
   updatePage () {
-    mount(this.views.app())
+    mount(this.topView())
   },
 
   changeView (view, viewParams) {
@@ -66,7 +65,5 @@ const store = {
     }
   }
 }
-
-store.views = setupViews(store)
 
 export default store
