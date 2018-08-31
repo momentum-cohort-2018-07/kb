@@ -8,7 +8,7 @@ function q (selector) {
   return document.querySelector(selector)
 }
 
-export function app () {
+function app () {
   if (store.username) {
     return container(views[store.view](store.viewParams))
   } else {
@@ -20,7 +20,7 @@ function container (children) {
   return h('div.container', children)
 }
 
-export function loginForm () {
+function loginForm () {
   function login (event) {
     event.preventDefault()
 
@@ -67,7 +67,7 @@ function snippetView (snippet) {
   )
 }
 
-export function editSnippetView (params) {
+function editSnippetView (params) {
   const snippet = store.getSnippet(params.id)
 
   if (!snippet) {
@@ -106,7 +106,7 @@ export function editSnippetView (params) {
   )
 }
 
-export function mainView () {
+function mainView () {
   return h('div',
     h('h1', `Snippets - ${store.username}`),
     h('div#snippets',
