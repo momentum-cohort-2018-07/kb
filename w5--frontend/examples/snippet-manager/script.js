@@ -1,7 +1,6 @@
 import 'shoelace-css/dist/shoelace.css'
 import './styles.css'
 
-import { mount } from './src/page'
-import { app } from './src/views'
+import app from './src/app'
 
-mount(app())
+app.store.retrieveSnippets()

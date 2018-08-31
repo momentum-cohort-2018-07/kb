@@ -6,6 +6,13 @@
     "lodash": "^4.17.10",
     "shoelace-css": "^1.0.0-beta24",
     "store": "^2.0.12",
-    "superagent": "^3.8.3"
+    "superagent": "^3.8.3",
+    "vanilla-router": "^1.2.7"
+  },
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.9.7"
   }
 }

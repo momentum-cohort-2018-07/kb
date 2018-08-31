@@ -1,5 +1,4 @@
 import request from 'superagent'
-import store from './store'
 
 const api = {
   baseURI: 'https://snippet-api.glitch.me/api/',
@@ -7,13 +6,7 @@ const api = {
   login (username, password) {
     return request.post(this.baseURI + 'login')
       .send({ username, password })
-      .then(res => {
-        if (res.body.user) {
-          store.setUsernameAndPassword(res.body.user.username, res.body.user.password)
-          return true
-        }
-        return false
-      })
+      .then(res => res.body.user)
   },
 
   getSnippets (username, password) {

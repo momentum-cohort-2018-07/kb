@@ -1,13 +1,14 @@
 import lodash from 'lodash'
 import { mount } from './page'
-import { app } from './views'
+import setupViews from './views'
 import api from './api'
 
 const store = {
   username: window.localStorage.getItem('username'),
   password: window.localStorage.getItem('password'),
   snippets: [],
-  editing: null,
+  view: ['app'],
+  router: null,
 
   setUsernameAndPassword (username, password) {
     window.localStorage.setItem('username', username)
@@ -15,32 +16,6 @@ const store = {
     this.setData({
       username, password
     })
-  },
-
-  getSnippet (snippetId) {
-    return this.snippets.find((snippet) => snippet._id === snippetId)
-  },
-
-  updateSnippets (id, snippet) {
-    api.updateSnippet(this.username, this.password, id, snippet)
-      .then(snippet => {
-        const snippets = lodash.cloneDeep(this.snippets)
-        const index = this.snippets.findIndex(snippet => snippet.id === id)
-        snippets[index] = snippet
-        this.setData({
-          editing: null,
-          snippets: snippets
-        })
-      })
-  },
-
-  retrieveSnippets () {
-    api.getSnippets(this.username, this.password)
-      .then(snippets => {
-        this.setData({
-          snippets: snippets
-        })
-      })
   },
 
   setData (data) {
@@ -56,9 +31,42 @@ const store = {
   },
 
   updatePage () {
-    console.log('updating page')
-    mount(app())
+    mount(this.views.app())
+  },
+
+  changeView (view, viewParams) {
+    this.setData({view: view, viewParams: viewParams})
+  },
+
+  getSnippet (snippetId) {
+    return this.snippets.find((snippet) => snippet._id === snippetId)
+  },
+
+  updateSnippet (id, snippet) {
+    return api.updateSnippet(this.username, this.password, id, snippet)
+      .then(snippet => {
+        const snippets = lodash.cloneDeep(this.snippets)
+        const index = this.snippets.findIndex(snippet => snippet._id === id)
+        snippets[index] = snippet
+        console.log(snippet)
+        this.setData({
+          snippets: snippets
+        })
+      })
+  },
+
+  retrieveSnippets () {
+    if (this.username && this.password) {
+      return api.getSnippets(this.username, this.password)
+        .then(snippets => {
+          this.setData({
+            snippets: snippets
+          })
+        })
+    }
   }
 }
+
+store.views = setupViews(store)
 
 export default store
