@@ -2,8 +2,6 @@ import h from 'hyperscript'
 import api from './api'
 import store from './store'
 
-store.topView = app
-
 function q (selector) {
   return document.querySelector(selector)
 }
