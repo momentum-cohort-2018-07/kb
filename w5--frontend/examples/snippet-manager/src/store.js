@@ -6,7 +6,11 @@ const store = {
   password: window.localStorage.getItem('password'),
   snippets: [],
   view: ['app'],
-  refreshFn: () => console.log(this),
+  updateCallbacks: [],
+
+  onUpdate (callback) {
+    this.updateCallbacks.push(callback)
+  },
 
   setUsernameAndPassword (username, password) {
     window.localStorage.setItem('username', username)
@@ -24,12 +28,10 @@ const store = {
     }
 
     if (!lodash.isEqual(oldStore, this)) {
-      this.updatePage()
+      for (let updateCallback of this.updateCallbacks) {
+        updateCallback(this)
+      }
     }
-  },
-
-  updatePage () {
-    this.refreshFn()
   },
 
   changeView (view, viewParams) {

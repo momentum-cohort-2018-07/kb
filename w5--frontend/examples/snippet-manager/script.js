@@ -26,17 +26,11 @@ function mount (child) {
   }
 }
 
-const app = {
-  router: router,
-  store: store,
-  views: views,
-  start: () => {
-    app.store.router = router
-    app.store.refreshFn = () => mount(views.app())
-    app.router.addUriListener()
-    app.router.check()
-    app.store.retrieveSnippets()
-  }
+function start () {
+  store.onUpdate(() => mount(views.app()))
+  store.retrieveSnippets()
+  router.addUriListener()
+  router.check()
 }
 
-app.start()
+start()
