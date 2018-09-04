@@ -62,6 +62,7 @@
 - [Active Record Validations](http://guides.rubyonrails.org/active_record_validations.html)
 
 #### Forms
+
 - [Rails Guides: Form Helpers](http://guides.rubyonrails.org/form_helpers.html)
 - [Rails Documentation: Form Helpers](https://api.rubyonrails.org/v5.2.1/classes/ActionView/Helpers/FormHelper.html)
 - [Rails Documentation: FormBuilder](http://api.rubyonrails.org/v5.2.1/classes/ActionView/Helpers/FormBuilder.html)
