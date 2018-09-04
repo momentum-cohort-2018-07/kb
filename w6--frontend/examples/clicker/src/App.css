@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.App__clickButton {
+  background-color: rgb(73, 73, 192);
+  color: white;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
