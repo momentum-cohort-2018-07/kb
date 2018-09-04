@@ -55,6 +55,8 @@
 #### Sessions and Authentication
 
 - [has_secure_password documentation](http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html)
+- [Rails Guides: Sessions](https://guides.rubyonrails.org/action_controller_overview.html#session)
+- [ActionDispatch::Session::CookieStore](https://api.rubyonrails.org/classes/ActionDispatch/Session/CookieStore.html)
 - [How Rails Sessions Work](https://www.justinweiss.com/articles/how-rails-sessions-work/)
 - [Sessions, Cookies, and Authentication from the Odin Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/sessions-cookies-and-authentication)
 - [Set-Cookie response header - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
