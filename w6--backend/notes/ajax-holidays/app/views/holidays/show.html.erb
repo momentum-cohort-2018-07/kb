@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @holiday.name %>
+</p>
+
+<p>
+  <strong>Observed on:</strong>
+  <%= @holiday.observed_on %>
+</p>
+
+<p>
+  <strong>Origin country:</strong>
+  <%= @holiday.origin_country %>
+</p>
+
+<%= link_to 'Edit', edit_holiday_path(@holiday) %> |
+<%= link_to 'Back', holidays_path %>

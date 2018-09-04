@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  observed_on: 2018-09-03
+  origin_country: MyString
+
+two:
+  name: MyString
+  observed_on: 2018-09-03
+  origin_country: MyString

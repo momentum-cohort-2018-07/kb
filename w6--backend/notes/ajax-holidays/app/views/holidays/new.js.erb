@@ -1,0 +1,5 @@
+console.log('here is the new.js.erb being rendered')
+
+// $('body').html('<h1>Hello from jQuery!</h1>');
+
+$('#form--new').html("<%=escape_javascript render partial: 'form', locals: {holiday: @holiday } %>");

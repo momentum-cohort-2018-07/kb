@@ -4,6 +4,7 @@
 
 - Using JavaScript with Rails (incl AJAX)
 - Rails JS helpers
+- [Holidays app with AJAX](notes/ajax-holidays)
 
 ## Day 2-4
 

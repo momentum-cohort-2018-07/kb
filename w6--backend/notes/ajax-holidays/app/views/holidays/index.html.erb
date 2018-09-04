@@ -1,0 +1,34 @@
+<h1>Holidays</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Observed on</th>
+      <th>Origin country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @holidays.each do |holiday| %>
+      <tr>
+        <td><%= holiday.name %></td>
+        <td><%= holiday.observed_on %></td>
+        <td><%= holiday.origin_country %></td>
+        <td><%= link_to 'Show', holiday %></td>
+        <td><%= link_to 'Edit', edit_holiday_path(holiday) %></td>
+        <td><%= link_to 'Destroy', holiday, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'New Holiday', new_holiday_path, remote: true, id: 'new-holiday-link' %>
+
+<div id="form--new"></div>
+
+<div id="holiday-created"></div>
