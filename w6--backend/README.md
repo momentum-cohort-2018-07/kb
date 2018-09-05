@@ -8,6 +8,7 @@
 
 ## Day 2-4
 
+- [cats-api app from class](notes/cats-api)
 - REST in Rails
 - Building an API with Rails
 - JSON and jBuilder
