@@ -69,6 +69,14 @@ class App extends React.Component {
     })
   }
 
+  changeAssignmentScore (studentName, assignmentName, score) {
+    const student = this.state.students[studentName]
+    student.scores[assignmentName] = score
+    this.setState({
+      students: this.state.students
+    })
+  }
+
   render () {
     let currentView
 
@@ -80,6 +88,7 @@ class App extends React.Component {
         name={name}
         scores={scores}
         assignments={assignments}
+        changeAssignmentScore={(assignmentName, score) => this.changeAssignmentScore(name, assignmentName, score)}
         setCurrentStudent={(name) => this.setCurrentStudent(name)} />
     } else {
       currentView = <GradebookView
