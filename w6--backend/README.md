@@ -37,6 +37,8 @@
 - [Rails Guides: API Applications](http://guides.rubyonrails.org/api_app.html)
 - [ActionController::API](http://api.rubyonrails.org/v5.2.0/classes/ActionController/API.html)
 - [Rails Controller `respond_to`](http://api.rubyonrails.org/classes/ActionController/MimeResponds.html#method-i-respond_to)
+- [Configure Rails to accept cross-origin requests](http://www.blog.bdauria.com/?p=427)
+- [Rack-cors gem](https://github.com/cyu/rack-cors)
 - [Jbuilder](https://github.com/rails/jbuilder)
 - [HTTP Status Codes](http://www.restapitutorial.com/httpstatuscodes.html)
 - - [Rails Guides: Layouts and Rendering - The Status Option](http://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option)
