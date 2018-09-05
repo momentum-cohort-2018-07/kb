@@ -1,11 +1,12 @@
 import React from 'react'
-import StudentRow from './StudentRow'
-import { letterGrade, average } from './util'
+import StudentView from './StudentView'
+import GradebookView from './GradebookView'
 
 class App extends React.Component {
   constructor () {
     super()
     this.state = {
+      currentStudent: null,
       assignments: [
         'Quiz 1',
         'Essay 1',
@@ -28,7 +29,6 @@ class App extends React.Component {
           'Essay 1': 82,
           'Quiz 2': 83,
           'Midterm': 84,
-          'Essay 2': 85,
           'Final': 86
         } },
         'Carter Davis': { scores: {
@@ -63,28 +63,35 @@ class App extends React.Component {
     return Object.keys(this.state.students)
   }
 
+  setCurrentStudent (studentName) {
+    this.setState({
+      currentStudent: studentName
+    })
+  }
+
   render () {
+    let currentView
+
+    if (this.state.currentStudent) {
+      const name = this.state.currentStudent
+      const scores = this.state.students[name].scores
+      const assignments = this.state.assignments
+      currentView = <StudentView
+        name={name}
+        scores={scores}
+        assignments={assignments}
+        setCurrentStudent={(name) => this.setCurrentStudent(name)} />
+    } else {
+      currentView = <GradebookView
+        students={this.state.students}
+        assignments={this.state.assignments}
+        setCurrentStudent={(name) => this.setCurrentStudent(name)} />
+    }
+
     return (
       <section className='section App'>
         <div className='container'>
-          <h1 className='title'>Gradebook</h1>
-          <table className='table'>
-            <thead>
-              <tr>
-                <th>Student</th>
-                {this.state.assignments.map(assignment => <th>{assignment}</th>)}
-                <th>Average</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.studentNames().map(studentName =>
-                <StudentRow
-                  name={studentName}
-                  scores={this.state.students[studentName].scores}
-                  assignments={this.state.assignments} />
-              )}
-            </tbody>
-          </table>
+          {currentView}
         </div>
       </section>
     )

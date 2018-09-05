@@ -3,7 +3,7 @@ import { letterGrade, average } from './util'
 
 class StudentRow extends React.Component {
   render () {
-    const { name, scores, assignments } = this.props
+    const { name, scores, assignments, onClick } = this.props
     // equivalent to:
     // const name = this.props.name
     // const scores = this.props.scores
@@ -12,9 +12,9 @@ class StudentRow extends React.Component {
     const studentAverage = Math.round(average(Object.values(scores)))
     return (
       <tr>
-        <td>{name}</td>
-        {assignments.map(assignmentName => (
-          <td>{scores[assignmentName]}</td>
+        <td><a onClick={onClick}>{name}</a></td>
+        {assignments.map((assignmentName, idx) => (
+          <td key={idx}>{scores[assignmentName]}</td>
         ))}
         <td>{studentAverage} ({letterGrade(studentAverage)})</td>
       </tr>
