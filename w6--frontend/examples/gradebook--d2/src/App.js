@@ -1,4 +1,5 @@
 import React from 'react'
+import StudentRow from './StudentRow'
 import { letterGrade, average } from './util'
 
 class App extends React.Component {
@@ -62,20 +63,6 @@ class App extends React.Component {
     return Object.keys(this.state.students)
   }
 
-  renderStudentRow (studentName) {
-    let student = this.state.students[studentName]
-    let studentAverage = Math.round(average(Object.values(student.scores)))
-    return (
-      <tr>
-        <td>{studentName}</td>
-        {this.state.assignments.map(assignmentName => (
-          <td>{student.scores[assignmentName]}</td>
-        ))}
-        <td>{studentAverage} ({letterGrade(studentAverage)})</td>
-      </tr>
-    )
-  }
-
   render () {
     return (
       <section className='section App'>
@@ -91,7 +78,10 @@ class App extends React.Component {
             </thead>
             <tbody>
               {this.studentNames().map(studentName =>
-                this.renderStudentRow(studentName)
+                <StudentRow
+                  name={studentName}
+                  scores={this.state.students[studentName].scores}
+                  assignments={this.state.assignments} />
               )}
             </tbody>
           </table>
