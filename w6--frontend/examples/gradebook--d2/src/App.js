@@ -15,62 +15,82 @@ class App extends React.Component {
         'Essay 2',
         'Final'
       ],
-      students: {
-        'Cadence Smith': { scores: {
-          'Quiz 1': 91,
-          'Essay 1': 92,
-          'Quiz 2': 93,
-          'Midterm': 94,
-          'Essay 2': 95,
-          'Final': 96
-        } },
-        'Morgan Willis': { scores: {
-          'Quiz 1': 81,
-          'Essay 1': 82,
-          'Quiz 2': 83,
-          'Midterm': 84,
-          'Final': 86
-        } },
-        'Carter Davis': { scores: {
-          'Quiz 1': 91,
-          'Essay 1': 92,
-          'Quiz 2': 93,
-          'Midterm': 94,
-          'Essay 2': 95,
-          'Final': 96
-        } },
-        'Ariel Kim': { scores: {
-          'Quiz 1': 91,
-          'Essay 1': 92,
-          'Quiz 2': 93,
-          'Midterm': 94,
-          'Essay 2': 95,
-          'Final': 96
-        } },
-        'Teagan Cruz': { scores: {
-          'Quiz 1': 91,
-          'Essay 1': 92,
-          'Quiz 2': 93,
-          'Midterm': 94,
-          'Essay 2': 95,
-          'Final': 96
-        } }
-      }
+      students: [
+        {
+          'id': 'cadence-smith',
+          'name': 'Cadence Smith',
+          'scores': {
+            'Quiz 1': 91,
+            'Essay 1': 92,
+            'Quiz 2': 93,
+            'Midterm': 94,
+            'Essay 2': 95,
+            'Final': 96
+          }
+        },
+        {
+          'id': 'morgan-davis',
+          'name': 'Morgan Davis',
+          'scores': {
+            'Quiz 1': 81,
+            'Essay 1': 82,
+            'Quiz 2': 83,
+            'Midterm': 84,
+            'Final': 86
+          }
+        },
+        {
+          'id': 'carter-willis',
+          'name': 'Carter Willis',
+          'scores': {
+            'Quiz 1': 91,
+            'Essay 1': 92,
+            'Quiz 2': 93,
+            'Midterm': 94,
+            'Essay 2': 95,
+            'Final': 96
+          }
+        },
+        {
+          'id': 'ariel-kim',
+          'name': 'Ariel Kim',
+          'scores': {
+            'Quiz 1': 91,
+            'Essay 1': 92,
+            'Quiz 2': 93,
+            'Midterm': 94,
+            'Essay 2': 95,
+            'Final': 96
+          }
+        },
+        {
+          'id': 'teagan-cruz',
+          'name': 'Teagan Cruz',
+          'scores': {
+            'Quiz 1': 91,
+            'Essay 1': 92,
+            'Quiz 2': 93,
+            'Midterm': 94,
+            'Essay 2': 95,
+            'Final': 96
+          }
+        }
+      ]
     }
   }
 
-  studentNames () {
-    return Object.keys(this.state.students)
+  studentIds () {
+    return this.state.students.map(student => student.id)
   }
 
-  setCurrentStudent (studentName) {
+  setCurrentStudent (studentId) {
     this.setState({
-      currentStudent: studentName
+      currentStudent: studentId
     })
   }
 
-  changeAssignmentScore (studentName, assignmentName, score) {
-    const student = this.state.students[studentName]
+  changeAssignmentScore (studentId, assignmentName, score) {
+    const student = this.state.students.find(student => student.id === studentId)
     student.scores[assignmentName] = score
     this.setState({
       students: this.state.students
@@ -81,20 +101,19 @@ class App extends React.Component {
     let currentView
 
     if (this.state.currentStudent) {
-      const name = this.state.currentStudent
-      const scores = this.state.students[name].scores
+      const student = this.state.students.find(student => student.id === this.state.currentStudent)
       const assignments = this.state.assignments
       currentView = <StudentView
-        name={name}
-        scores={scores}
+        student={student}
         assignments={assignments}
-        changeAssignmentScore={(assignmentName, score) => this.changeAssignmentScore(name, assignmentName, score)}
-        setCurrentStudent={(name) => this.setCurrentStudent(name)} />
+        changeAssignmentScore={(assignmentName, score) =>
+          this.changeAssignmentScore(student.id, assignmentName, score)}
+        setCurrentStudent={(id) => this.setCurrentStudent(id)} />
     } else {
       currentView = <GradebookView
         students={this.state.students}
         assignments={this.state.assignments}
-        setCurrentStudent={(name) => this.setCurrentStudent(name)} />
+        setCurrentStudent={(id) => this.setCurrentStudent(id)} />
     }
 
     return (

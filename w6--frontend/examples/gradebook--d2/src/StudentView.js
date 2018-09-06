@@ -13,8 +13,8 @@ class StudentView extends React.Component {
   }
 
   render () {
-    let { name, scores, assignments, setCurrentStudent, changeAssignmentScore } = this.props
-    let averageScore = Math.round(average(Object.values(scores)))
+    let { student, assignments, setCurrentStudent, changeAssignmentScore } = this.props
+    let averageScore = Math.round(average(Object.values(student.scores)))
     return (
       <div className='App'>
         <section className='section'>
@@ -22,7 +22,7 @@ class StudentView extends React.Component {
             <div className='columns'>
               <div className='column is-four-fifths'>
                 <div><a onClick={() => setCurrentStudent(null)}>&lt; Back to Gradebook</a></div>
-                <h1 className='title'>{name}</h1>
+                <h1 className='title'>{student.name}</h1>
               </div>
               <div className='column'>
                 <section className={`composite-grade has-text-white has-text-centered ${this.gradeClassName(letterGrade(averageScore))}`}>
@@ -41,7 +41,7 @@ class StudentView extends React.Component {
                     </div>
                     <div className='column'>
                       <input type='number' className='input'
-                        value={scores[assignmentName]}
+                        value={student.scores[assignmentName]}
                         onChange={event => {
                           changeAssignmentScore(assignmentName, parseInt(event.target.value, 10))
                         }} />
