@@ -1,86 +1,33 @@
 import React from 'react'
 import StudentView from './StudentView'
 import GradebookView from './GradebookView'
+import request from 'superagent'
 
 class App extends React.Component {
   constructor () {
     super()
     this.state = {
+      error: false,
       currentStudent: null,
-      assignments: [
-        'Quiz 1',
-        'Essay 1',
-        'Quiz 2',
-        'Midterm',
-        'Essay 2',
-        'Final'
-      ],
-      students: [
-        {
-          'id': 'cadence-smith',
-          'name': 'Cadence Smith',
-          'scores': {
-            'Quiz 1': 91,
-            'Essay 1': 92,
-            'Quiz 2': 93,
-            'Midterm': 94,
-            'Essay 2': 95,
-            'Final': 96
-          }
-        },
-        {
-          'id': 'morgan-davis',
-          'name': 'Morgan Davis',
-          'scores': {
-            'Quiz 1': 81,
-            'Essay 1': 82,
-            'Quiz 2': 83,
-            'Midterm': 84,
-            'Final': 86
-          }
-        },
-        {
-          'id': 'carter-willis',
-          'name': 'Carter Willis',
-          'scores': {
-            'Quiz 1': 91,
-            'Essay 1': 92,
-            'Quiz 2': 93,
-            'Midterm': 94,
-            'Essay 2': 95,
-            'Final': 96
-          }
-        },
-        {
-          'id': 'ariel-kim',
-          'name': 'Ariel Kim',
-          'scores': {
-            'Quiz 1': 91,
-            'Essay 1': 92,
-            'Quiz 2': 93,
-            'Midterm': 94,
-            'Essay 2': 95,
-            'Final': 96
-          }
-        },
-        {
-          'id': 'teagan-cruz',
-          'name': 'Teagan Cruz',
-          'scores': {
-            'Quiz 1': 91,
-            'Essay 1': 92,
-            'Quiz 2': 93,
-            'Midterm': 94,
-            'Essay 2': 95,
-            'Final': 96
-          }
-        }
-      ]
+      assignments: [],
+      students: []
     }
   }
 
-  studentIds () {
-    return this.state.students.map(student => student.id)
+  componentDidMount () {
+    request.get('http://localhost:4000/assignments')
+      .then(res => {
+        this.setState({
+          assignments: res.body
+        })
+      })
+
+    request.get('http://localhost:4000/students')
+      .then(res => {
+        this.setState({
+          students: res.body
+        })
+      })
   }
 
   setCurrentStudent (studentId) {
@@ -95,6 +42,13 @@ class App extends React.Component {
     this.setState({
       students: this.state.students
     })
+    request.put(`http://localhost:4000/students/${studentId}`)
+      .send(student)
+      .then(res => {
+        if (!res.ok) {
+          this.setState({ error: true })
+        }
+      })
   }
 
   render () {
