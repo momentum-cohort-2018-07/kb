@@ -42,7 +42,7 @@
 - [Rack-cors gem](https://github.com/cyu/rack-cors)
 - [Jbuilder](https://github.com/rails/jbuilder)
 - [HTTP Status Codes](http://www.restapitutorial.com/httpstatuscodes.html)
-- - [Rails Guides: Layouts and Rendering - The Status Option](http://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option)
+- [Rails Guides: Layouts and Rendering - The Status Option](http://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option)
 - [Rails Routing: Namespacing](http://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing)
 
 ### Token Authentication
