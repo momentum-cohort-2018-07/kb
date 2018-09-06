@@ -2,6 +2,7 @@ import React from 'react'
 import StudentView from './StudentView'
 import GradebookView from './GradebookView'
 import request from 'superagent'
+import debounce from 'lodash/debounce'
 
 class App extends React.Component {
   constructor () {
@@ -12,6 +13,7 @@ class App extends React.Component {
       assignments: [],
       students: []
     }
+    this.updateStudentInApi = debounce(this.updateStudentInApi, 200)
   }
 
   componentDidMount () {
@@ -36,19 +38,23 @@ class App extends React.Component {
     })
   }
 
-  changeAssignmentScore (studentId, assignmentName, score) {
-    const student = this.state.students.find(student => student.id === studentId)
-    student.scores[assignmentName] = score
-    this.setState({
-      students: this.state.students
-    })
-    request.put(`http://localhost:4000/students/${studentId}`)
+  updateStudentInApi (student) {
+    request.put(`http://localhost:4000/students/${student.id}`)
       .send(student)
       .then(res => {
         if (!res.ok) {
           this.setState({ error: true })
         }
       })
+  }
+
+  changeAssignmentScore (studentId, assignmentName, score) {
+    const student = this.state.students.find(student => student.id === studentId)
+    student.scores[assignmentName] = score
+    this.setState({
+      students: this.state.students
+    })
+    this.updateStudentInApi(student)
   }
 
   render () {
