@@ -20,19 +20,20 @@
 
 - Props
 - PropTypes
-- Writing tests with Jest
-- Snapshot testing
 - **Lab:** React calculator
 
 ## Day 3: React lifecycle
 
 - Lifecycle events
 - Async requests in React
-- Async tests
 - **Lab:** React Freeshelf Day 1
 
 ## Day 4
 
 - Decomposing components
-- Testing with enzyme
+- Multiple components with state
 - **Project:** React Freeshelf
+
+### Links
+
+* [Instructions for weekend project](https://github.com/momentum-cohort-2018-07/project-w6-fe#directions---day-2-and-beyond)
