@@ -1,0 +1,72 @@
+{
+  "assignments": [
+    "Quiz 1",
+    "Essay 1",
+    "Quiz 2",
+    "Midterm",
+    "Essay 2",
+    "Final"
+  ],
+  "students": [
+    {
+      "id": "cadence-smith",
+      "name": "Cadence Smith",
+      "scores": {
+        "Quiz 1": 100,
+        "Essay 1": 92,
+        "Quiz 2": 93,
+        "Midterm": 94,
+        "Essay 2": 95,
+        "Final": 96
+      }
+    },
+    {
+      "id": "morgan-davis",
+      "name": "Morgan Davis",
+      "scores": {
+        "Quiz 1": 81,
+        "Essay 1": 82,
+        "Quiz 2": 83,
+        "Midterm": 84,
+        "Final": 86,
+        "Essay 2": 70
+      }
+    },
+    {
+      "id": "carter-willis",
+      "name": "Carter Willis",
+      "scores": {
+        "Quiz 1": 91,
+        "Essay 1": 92,
+        "Quiz 2": 93,
+        "Midterm": 94,
+        "Essay 2": 95,
+        "Final": 86
+      }
+    },
+    {
+      "id": "ariel-kim",
+      "name": "Ariel Kim",
+      "scores": {
+        "Quiz 1": 91,
+        "Essay 1": 92,
+        "Quiz 2": 93,
+        "Midterm": 94,
+        "Essay 2": 95,
+        "Final": 96
+      }
+    },
+    {
+      "id": "teagan-cruz",
+      "name": "Teagan Cruz",
+      "scores": {
+        "Quiz 1": 91,
+        "Essay 1": 92,
+        "Quiz 2": 93,
+        "Midterm": 94,
+        "Essay 2": 95,
+        "Final": 96
+      }
+    }
+  ]
+}

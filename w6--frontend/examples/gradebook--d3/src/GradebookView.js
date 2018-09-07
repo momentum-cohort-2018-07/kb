@@ -1,10 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import StudentRow from './StudentRow'
 
 class GradebookView extends React.Component {
   render () {
     const { students, assignments, setCurrentStudent } = this.props
-    const studentNames = Object.keys(students)
     return (
       <div className='GradebookView'>
         <h1 className='title'>Gradebook</h1>
@@ -17,13 +17,12 @@ class GradebookView extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {studentNames.map((studentName, idx) =>
+            {students.map((student, idx) =>
               <StudentRow
                 key={idx}
-                name={studentName}
-                scores={students[studentName].scores}
+                student={student}
                 assignments={assignments}
-                onClick={() => setCurrentStudent(studentName)}
+                onClick={() => setCurrentStudent(student.id)}
               />
             )}
           </tbody>
@@ -31,6 +30,17 @@ class GradebookView extends React.Component {
       </div>
     )
   }
+}
+
+GradebookView.propTypes = {
+  changeStudentName: PropTypes.func,
+  students: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    scores: PropTypes.object
+  })),
+  assignments: PropTypes.arrayOf(PropTypes.string),
+  setCurrentStudent: PropTypes.func
 }
 
 export default GradebookView

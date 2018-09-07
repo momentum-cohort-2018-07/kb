@@ -1,79 +1,100 @@
 import React from 'react'
 import StudentView from './StudentView'
 import GradebookView from './GradebookView'
-import request from 'superagent'
-import debounce from 'lodash/debounce'
 
 class App extends React.Component {
   constructor () {
     super()
     this.state = {
-      error: false,
       currentStudent: null,
-      assignments: [],
-      students: []
+      assignments: [
+        'Quiz 1',
+        'Essay 1',
+        'Quiz 2',
+        'Midterm',
+        'Essay 2',
+        'Final'
+      ],
+      students: {
+        'Cadence Smith': { scores: {
+          'Quiz 1': 91,
+          'Essay 1': 92,
+          'Quiz 2': 93,
+          'Midterm': 94,
+          'Essay 2': 95,
+          'Final': 96
+        } },
+        'Morgan Willis': { scores: {
+          'Quiz 1': 81,
+          'Essay 1': 82,
+          'Quiz 2': 83,
+          'Midterm': 84,
+          'Final': 86
+        } },
+        'Carter Davis': { scores: {
+          'Quiz 1': 91,
+          'Essay 1': 92,
+          'Quiz 2': 93,
+          'Midterm': 94,
+          'Essay 2': 95,
+          'Final': 96
+        } },
+        'Ariel Kim': { scores: {
+          'Quiz 1': 91,
+          'Essay 1': 92,
+          'Quiz 2': 93,
+          'Midterm': 94,
+          'Essay 2': 95,
+          'Final': 96
+        } },
+        'Teagan Cruz': { scores: {
+          'Quiz 1': 91,
+          'Essay 1': 92,
+          'Quiz 2': 93,
+          'Midterm': 94,
+          'Essay 2': 95,
+          'Final': 96
+        } }
+      }
     }
-    this.updateStudentInApi = debounce(this.updateStudentInApi, 200)
   }
 
-  componentDidMount () {
-    request.get('http://localhost:4000/assignments')
-      .then(res => {
-        this.setState({
-          assignments: res.body
-        })
-      })
-
-    request.get('http://localhost:4000/students')
-      .then(res => {
-        this.setState({
-          students: res.body
-        })
-      })
+  studentNames () {
+    return Object.keys(this.state.students)
   }
 
-  setCurrentStudent (studentId) {
+  setCurrentStudent (studentName) {
     this.setState({
-      currentStudent: studentId
+      currentStudent: studentName
     })
   }
 
-  updateStudentInApi (student) {
-    request.put(`http://localhost:4000/students/${student.id}`)
-      .send(student)
-      .then(res => {
-        if (!res.ok) {
-          this.setState({ error: true })
-        }
-      })
-  }
-
-  changeAssignmentScore (studentId, assignmentName, score) {
-    const student = this.state.students.find(student => student.id === studentId)
+  changeAssignmentScore (studentName, assignmentName, score) {
+    const student = this.state.students[studentName]
     student.scores[assignmentName] = score
     this.setState({
       students: this.state.students
     })
-    this.updateStudentInApi(student)
   }
 
   render () {
     let currentView
 
     if (this.state.currentStudent) {
-      const student = this.state.students.find(student => student.id === this.state.currentStudent)
+      const name = this.state.currentStudent
+      const scores = this.state.students[name].scores
       const assignments = this.state.assignments
       currentView = <StudentView
-        student={student}
+        name={name}
+        scores={scores}
         assignments={assignments}
-        changeAssignmentScore={(assignmentName, score) =>
-          this.changeAssignmentScore(student.id, assignmentName, score)}
-        setCurrentStudent={(id) => this.setCurrentStudent(id)} />
+        changeAssignmentScore={(assignmentName, score) => this.changeAssignmentScore(name, assignmentName, score)}
+        setCurrentStudent={(name) => this.setCurrentStudent(name)} />
     } else {
       currentView = <GradebookView
         students={this.state.students}
         assignments={this.state.assignments}
-        setCurrentStudent={(id) => this.setCurrentStudent(id)} />
+        setCurrentStudent={(name) => this.setCurrentStudent(name)} />
     }
 
     return (
