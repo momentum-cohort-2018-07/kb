@@ -11,6 +11,7 @@
 * [Week 4 -- BE](w4--backend/)
 * [Week 5 -- BE](w5--backend/)
 * [Week 6 -- BE](w6--backend/)
+* [Week 7 -- BE](w7--backend/)
 
 ## Frontend
 
