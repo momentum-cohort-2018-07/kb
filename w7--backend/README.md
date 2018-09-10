@@ -3,10 +3,11 @@
 ## Day 1
 
 - Uploading files with ActiveStorage
-- Results pagination with Kaminari
+- [Recipes app with Active Storage](notes/recipes-with-uploads/)
 
 ## Day 2
 
+- Results pagination with Kaminari
 - Mailers: sending email from a Rails application
 
 ## Day 3
