@@ -20,15 +20,6 @@
 
 ## Links
 
-### SQL
-
-- [SQL Basics -- open source on GitBook](https://medium.com/launch-school/sql-joins-and-you-21448802b795)
-- [SQL Queries -- Thoughtbot article](https://robots.thoughtbot.com/back-to-basics-sql)
-- [Using SQL with Active Record queries](http://guides.rubyonrails.org/active_record_querying.html#finding-by-sql)
-- [SQL Joins](https://medium.com/launch-school/sql-joins-and-you-21448802b795)
-- [Arel, Ruby's SQL query builder](https://jpospisil.com/2014/06/16/the-definitive-guide-to-arel-the-sql-manager-for-ruby.html)
-- [20,000 Leagues Under Active Record -- how does AR create and execute SQL?](http://patshaughnessy.net/2014/9/17/20000-leagues-under-activerecord)
-
 ### Active Storage
 
 - [Active Storage Rails Guides](http://edgeguides.rubyonrails.org/active_storage_overview.html)
@@ -50,3 +41,12 @@
 - [ActionMailer::MessageDelivery](http://api.rubyonrails.org/classes/ActionMailer/MessageDelivery.html)
 - [Testing Mailers](http://guides.rubyonrails.org/testing.html#testing-your-mailers)
 - [Mailer Test Helper](http://api.rubyonrails.org/v5.2.0/classes/ActionMailer/TestHelper.html)
+
+### SQL
+
+- [SQL Basics -- open source on GitBook](https://medium.com/launch-school/sql-joins-and-you-21448802b795)
+- [SQL Queries -- Thoughtbot article](https://robots.thoughtbot.com/back-to-basics-sql)
+- [Using SQL with Active Record queries](http://guides.rubyonrails.org/active_record_querying.html#finding-by-sql)
+- [SQL Joins](https://medium.com/launch-school/sql-joins-and-you-21448802b795)
+- [Arel, Ruby's SQL query builder](https://jpospisil.com/2014/06/16/the-definitive-guide-to-arel-the-sql-manager-for-ruby.html)
+- [20,000 Leagues Under Active Record -- how does AR create and execute SQL?](http://patshaughnessy.net/2014/9/17/20000-leagues-under-activerecord)
