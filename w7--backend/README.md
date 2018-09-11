@@ -9,6 +9,7 @@
 
 - Results pagination with Kaminari
 - Mailers: sending email from a Rails application
+- [Recipes with pagination and mailers](notes/recipes-pagination-and-mailers)
 
 ## Day 3
 
