@@ -1,0 +1,17 @@
+<h1>Recipes#index</h1>
+<%= link_to 'Create a new recipe', new_recipe_path %>
+
+<%= paginate @recipes %>
+<%= page_entries_info @recipes %>
+
+<div>
+  <div class="container recipes__list">
+  <% @recipes.each do |recipe| %>
+    <div class="row recipe__entry mt-1">
+        <div class="col-sm"><%= recipe.title %></div>
+        <div class="col-sm"><%= recipe.body %></div>
+        <div class="col-sm"><%= link_to 'Show', recipe %></div>
+    </div>
+  <% end %>
+  </div>
+</div>

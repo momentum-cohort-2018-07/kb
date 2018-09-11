@@ -1,0 +1,14 @@
+<h1>Users#new</h1>
+
+
+<div class="registration-form">
+ <%= form_with url: users_create_path, local:true do |f| %>
+    <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+ <% end %>
+</div>

@@ -1,0 +1,21 @@
+<h1>Recipes#show</h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @recipe.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @recipe.body %>
+</p>
+
+<% if @recipe.image.attached? %>
+<p>
+  <strong>Photo:</strong>
+    <%= image_tag @recipe.image %>
+</p>
+<% end %>
+
+<%= link_to 'Back', root_path %>
