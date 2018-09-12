@@ -15,10 +15,11 @@
 
 - Using SQL
 - Writing SQL queries
+- [Kate's SQL demo app](https://github.com/katestud/pet_registry_sql_demo)
 
 ## Day 4
 
-- Working with a front end team
+- Hurricane Apocalypse -- additional lab day for weekend project
 
 ## Links
 
