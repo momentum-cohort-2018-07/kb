@@ -22,9 +22,13 @@ You will sit down with your team and plan your application using paper. You can 
 
 You will have 30 minutes for planning, with a possible extension of 15 minutes. At the end of planning, you will present your plan.
 
+**NOTE** All computers must be shut during this time period.
+
 ### Step 2 - coding
 
 You will code this application with your team. You will have 1 hour to do this.
+
+**NOTE** The only website you should look is at the React documentation. You cannot under any circumstances copy and paste code from other projects. You should not look at old project code during this time.
 
 ### Teams
 
