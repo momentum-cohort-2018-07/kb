@@ -12,10 +12,13 @@
 * [Week 5 -- BE](w5--backend/)
 * [Week 6 -- BE](w6--backend/)
 * [Week 7 -- BE](w7--backend/)
+* [Week 8 -- BE](w8--backend/)
 
 ## Frontend
 
 * [Week 3 -- FE](w3--frontend/)
 * [Week 4 -- FE](w4--frontend/)
-* [Week 5 -- BE](w5--frontend/)
-* [Week 6 -- BE](w6--frontend/)
+* [Week 5 -- FE](w5--frontend/)
+* [Week 6 -- FE](w6--frontend/)
+* [Week 7 -- FE](w7--frontend/)
+* [Week 8 -- FE](w8--frontend/)
