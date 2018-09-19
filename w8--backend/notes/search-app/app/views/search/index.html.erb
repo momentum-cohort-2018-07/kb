@@ -1,0 +1,17 @@
+<h1>Search</h1>
+
+<%= form_tag search_index_path, method: :get do %>
+  <p>
+    <%= text_field_tag :search_term, params[:search_term] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+<section class="results">
+  <% @results.each do |artist| %>
+    <h3><%= artist.name %></h3>
+    <div class="bio">
+      <p><%= artist.bio %></p>
+    </div>
+  <% end %>
+</section>
