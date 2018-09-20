@@ -1,0 +1,27 @@
+<h1>Reports#show</h1>
+
+<% if @report.ready? %>
+  <p>Your report is ready. <%= link_to "Download", @report.url %>.</p>
+  <p>The report took <%= @report.completed_at - @report.created_at %>s to generate.
+<% else %>
+  <p>Please wait while your report is generated...</p>
+
+  <script>
+    setInterval(function() {
+      fetch(
+        window.location.href,
+        {
+          headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+          },
+          method: 'GET'
+        }).
+      then(function(res){
+        if (res.status === 200){
+          window.location.reload()
+        }
+      })
+    }, 5000);
+  </script>
+<% end %>
+
