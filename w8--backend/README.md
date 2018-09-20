@@ -68,6 +68,46 @@
   - https://learn.co/lessons/methods-default-arguments
   - https://www.crondose.com/2016/09/comprehensive-guide-to-method-arguments-in-ruby/
 
+### Turbolinks - Lori
+
+- [RAILSCASTS video]
+(http://railscasts.com/episodes/390-turbolinks)
+- [Turbolinks Test](https://github.com/steveklabnik/turbolinks_test) - aims to prove if turbo links is worth it by running page requests in different situations to compare if there’s speed boost.
+- [Turbolinks sourcecode](https://github.com/turbolinks/turbolinks/blob/master/README.md)
+- [Thoughtbot video](https://thoughtbot.com/upcase/videos/turbolinks)
+
+### Puma - Steve
+
+- [Presentation slides](notes/Puma.key)
+
+### Geoff - N+1 queries
+- [TED talk about high speed light camera](https://www.ted.com/talks/ramesh_raskar_a_camera_that_takes_one_trillion_frames_per_second?language=en)
+- [Bullet gem](https://github.com/flyerhzm/bullet/blob/master/README.md)
+- https://secure.phabricator.com/book/phabcontrib/article/n_plus_one/
+- https://www.datacenters.com/news/redundancy-n-1-n-2-vs-2n-vs-2n-1
+- https://www.sitepoint.com/silver-bullet-n1-problem/
+
+### Errors & Exceptions - Laura
+
+- [Presentation slides](notes/errors-exceptions.pptx)
+
+### Polymorphism - Gene
+
+- [Presentation doc](https://hackmd.io/s/rJEnwu0Om)
+
+### Test-Driven Development (TDD) - Phoenix
+
+- [TDD article](https://blog.testlodge.com/what-is-tdd/)
+
+### Web servers & Nginx - Joanna
+
+- http://nginx.org/en/docs/
+- https://medium.com/ruby-on-rails-web-application-development/how-to-deploy-ruby-on-rails-apps-to-the-internet-production-staging-49efc503c91d
+- https://www.justinweiss.com/articles/a-web-server-vs-an-app-server/
+- https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04
+- https://en.wikipedia.org/wiki/LAMP_(software_bundle)
+- https://stackoverflow.com/questions/4113299/ruby-on-rails-server-options?rq=1
+
 ### Full-text search
 
 - [`pg_search` gem](https://github.com/Casecommons/pg_search)
